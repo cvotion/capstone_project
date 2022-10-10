@@ -1,5 +1,5 @@
 import React from 'react'
-import mapboxgl from 'react-map-gl'
+import mapboxgl from 'mapbox-gl'
 import {keys} from './secret.js'
 
 const App = () => {
@@ -12,10 +12,22 @@ const App = () => {
       zoom: 9 // starting zoom
   });
 
+  map.on('load', () => {
+    map.addLayer({
+        id: 'terrain-data',
+        type: 'line',
+        source: {
+            type: 'vector',
+            url: 'mapbox://mapbox.mapbox-terrain-v2'
+        },
+        'source-layer': 'contour'
+    });
+  });
+
   return (
     <>
 
-      <div>{map}</div>  
+      <div id='map'></div>  
     
     </>
   )
