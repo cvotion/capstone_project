@@ -3,11 +3,13 @@ const app = express()
 const port = 3001;
 const mongoose = require('mongoose')
 const UserModel = require("./models/Users")
+const databaseInfo = require('./secret');
+console.log(databaseInfo);
 
 //this line is to parse the req.body into json format
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://reactCapstone:reactCapstone123@cluster0.arz39w1.mongodb.net/capstone_restroom?retryWrites=true&w=majority")
+mongoose.connect(databaseInfo.connect)
 
 
 //get users info from database
