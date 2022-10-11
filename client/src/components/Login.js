@@ -1,5 +1,6 @@
 import React from 'react'
 import '../App.css'
+import NavigationBar from '../navigation/NavigationBar'
 import {
   MDBBtn,
   MDBContainer,
@@ -15,8 +16,10 @@ from 'mdb-react-ui-kit';
 const Login = () => {
   return (
     <>
-      
-      <MDBContainer fluid>
+
+   
+
+<MDBContainer fluid>
 
 <MDBRow className='d-flex justify-content-center align-items-center h-100'>
   <MDBCol col='12'>
@@ -27,15 +30,18 @@ const Login = () => {
         <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
         <p className="text-white-50 mb-5">Please enter your login and password!</p>
 
-        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email address' id='formControlLg' type='email' size="lg"/>
+        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='First Name' id='formControlLg' type='email' size="lg"/>
+        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Last Name' id='formControlLg' type='password' size="lg"/>
+        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email' id='formControlLg' type='password' size="lg"/>
         <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg"/>
 
         <p className="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-        <MDBBtn outline className='mx-2 px-5' color='white' size='lg'>
+        
+        <MDBBtn outline className='mx-2 px-5 text-white' color='white' size='lg'>
           Login
         </MDBBtn>
 
-        <div className='d-flex flex-row mt-3 mb-5'>
+        {/* <div className='d-flex flex-row mt-3 mb-5 text-white'>
           <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
             <MDBIcon fab icon='facebook-f' size="lg"/>
           </MDBBtn>
@@ -47,10 +53,10 @@ const Login = () => {
           <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
             <MDBIcon fab icon='google' size="lg"/>
           </MDBBtn>
-        </div>
+        </div>  */}
 
         <div>
-          <p className="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a></p>
+          <p className="mb-0">Don't have an account? <a href="./Register" class="text-white-50 fw-bold">Sign Up</a></p>
 
         </div>
       </MDBCardBody>
@@ -60,7 +66,7 @@ const Login = () => {
 </MDBRow>
 
 </MDBContainer>
-      
+
     </>
   )
 }
