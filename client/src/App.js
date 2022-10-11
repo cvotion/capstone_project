@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import mapboxgl from 'mapbox-gl'
 import {keys} from './secret.js'
+import NavigationBar from './navigation/NavigationBar'
 
 const App = () => {
 

@@ -9,6 +9,7 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 // Styles
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
+import NavigationBar from './navigation/NavigationBar'
 
 // Components
 import App from './App';
@@ -20,15 +21,18 @@ let store = createStore(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DE
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <Switch>
-          <Route path="/" element={<App/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/register" element={<Register/>} />
-          <Route path="/favorites" element={<Favorites/>} />
-        </Switch>
+        <NavigationBar>
+          <Switch>
+            <Route path="/" element={<App/>} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/register" element={<Register/>} />
+            <Route path="/favorites" element={<Favorites/>} />
+          </Switch>
+        </NavigationBar>
       </Router>
     </Provider>
   </React.StrictMode>
