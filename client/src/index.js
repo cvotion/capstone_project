@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import {BrowserRouter as Router, Route, Routes as Switch} from 'react-router-dom'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
+import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 
 // Styles
 import 'bootstrap/dist/css/bootstrap.min.css'
