@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter as Router, Route, Routes as Switch} from 'react-router-dom'
-import {createStore} from 'redux'
+import {createStore, compose, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 
@@ -14,13 +14,23 @@ import NavigationBar from './navigation/NavigationBar'
 // Components
 import App from './App';
 import Favorites from './components/Favorites'
-import Login from './components/Login'
-import Register from './components/Register'
+import Login from './components/auth/Login'
+import Register from './components/auth/Register'
+import reduxThunk from 'redux-thunk'
+import reducer from './reducers/reducer'
 
-let store = createStore(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+let store = createStore(reducer, {},
+  compose(applyMiddleware(reduxThunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ))
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
+
+
 
   <React.StrictMode>
     <Provider store={store}>
