@@ -30,8 +30,7 @@ const Login = () => {
         <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
         <p className="text-white-50 mb-5">Please enter your login and password!</p>
 
-        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='First Name' id='formControlLg' type='email' size="lg"/>
-        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Last Name' id='formControlLg' type='password' size="lg"/>
+        
         <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email' id='formControlLg' type='password' size="lg"/>
         <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg"/>
 
