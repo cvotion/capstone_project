@@ -39,7 +39,7 @@ const Register = () => {
         <p className="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
         
         <MDBBtn outline className='mx-2 px-5 text-white' color='white' size='lg'>
-          Login
+          Register
         </MDBBtn>
 
         {/* <div className='d-flex flex-row mt-3 mb-5 text-white'>
