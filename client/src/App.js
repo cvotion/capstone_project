@@ -37,7 +37,9 @@ const App = () => {
   return (
     <>
 
+
       <div id='map' style={{width: "700px", height: "400px"}}></div>  
+
     
     </>
   )
