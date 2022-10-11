@@ -31,18 +31,18 @@ export default function App(props) {
           <MDBCollapse navbar show={showBasic}>
             <MDBNavbarNav right className='mb-2 mb-lg-0'>
               <MDBNavbarItem active>
-                <MDBNavbarLink aria-current='page' href='./'>
+                <Link aria-current='page' to='./' className='nav-link'>
                   Home
-                </MDBNavbarLink>
+                </Link>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href='./login'>Login</MDBNavbarLink>
+                <Link to='./login' className='nav-link'>Login</Link>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href='./Register'>Register</MDBNavbarLink>
+              <Link to='./register' className='nav-link'>Register</Link>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href='./Favorites'>Favorites</MDBNavbarLink>
+              <Link to='./favorites' className='nav-link'>Favorite</Link>
               </MDBNavbarItem>
             </MDBNavbarNav>
           </MDBCollapse>
