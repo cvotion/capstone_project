@@ -1,10 +1,12 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import mapboxgl from 'mapbox-gl'
 import {keys} from './secret.js'
 import NavigationBar from './navigation/NavigationBar'
 
 const App = () => {
+  
+  const [restrooms, setRestrooms] = useState([])
 
   useEffect(() => {
 
@@ -15,6 +17,14 @@ const App = () => {
         center: [-95.37, 29.76], // starting position [lng, lat]
         zoom: 9 // starting zoom
     });
+
+    const getRestroomInfo = async () => {
+      let results = await fetch('https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=50&offset=0&lat=29.76&lng=-95.37')
+      let data = await results.json()
+      setRestrooms(data)
+      console.log(data)
+    }
+    getRestroomInfo()
 
     // map.on('load', () => {
     //   map.addLayer({
