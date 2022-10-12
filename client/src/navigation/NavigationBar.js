@@ -44,6 +44,9 @@ export default function App(props) {
               <MDBNavbarItem>
               <Link to='./favorites' className='nav-link'>Favorite</Link>
               </MDBNavbarItem>
+              <MDBNavbarItem>
+              <Link to='./signout' className='nav-link'>Sign Out</Link>
+              </MDBNavbarItem>
             </MDBNavbarNav>
           </MDBCollapse>
         </MDBContainer>

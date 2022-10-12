@@ -80,3 +80,50 @@ export const register = (formData, cb) => async dispatch=>{  // store.dispatch
         })
     }
 }
+
+export const signOut = (cb) => dispatch =>{
+
+    dispatch({
+        type: actionType.LOAD_USER_TOKEN, 
+        data: ""
+
+    })
+
+    // clear local storage
+
+    localStorage.removeItem('token')
+
+    cb(); //navigate our user to some other page
+
+
+}
+
+export const checkToken = () => async dispatch => {
+    if (localStorage.token){
+        try {
+            //api call to check if token is valid 
+
+            let response = await axios.get('/favorite', {
+                headers:{
+                    'authorization': localStorage.token
+                }
+            })
+
+            if(response.data.isValid){
+                dispatch({
+                    type: actionType.LOAD_USER_TOKEN,
+                    data: localStorage.token
+                })
+            }
+        } 
+        
+        catch (err) {
+
+            dispatch({
+                type: actionType.ERROR,
+                data: err
+            })
+            
+        }
+    }
+}
