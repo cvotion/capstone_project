@@ -18,6 +18,7 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import reduxThunk from 'redux-thunk'
 import reducer from './reducers/reducer'
+import RequireAuth from './components/RequireAuth'
 
 let store = createStore(reducer, {},
   compose(applyMiddleware(reduxThunk),
@@ -40,7 +41,7 @@ root.render(
             <Route path="/" element={<App/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
-            <Route path="/favorites" element={<Favorites/>} />
+            <Route path="/favorites" element={<RequireAuth> <Favorites /> </RequireAuth>} />
           </Switch>
         </NavigationBar>
       </Router>

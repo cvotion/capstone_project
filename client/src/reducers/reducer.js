@@ -1,5 +1,5 @@
 
-import actionTypes from '../actions/actionType';
+import actionType from '../actions/actionType';
 
 const initialState = {
 
@@ -11,13 +11,13 @@ const initialState = {
 const reducerTemplate = (state = initialState, action) => {
 
     switch(action.type){
-        case actionTypes.LOAD_USER_TOKEN:
+        case actionType.LOAD_USER_TOKEN:
             return {
                 ...state, 
                 token: action.data
             }
 
-        case actionTypes.ERROR: 
+        case actionType.ERROR: 
             return {
                 ...state, 
                 error: action.data

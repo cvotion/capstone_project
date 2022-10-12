@@ -16,6 +16,19 @@ require('../auth/passAuth')
 router.use(express.urlencoded({extended: false})) // scrape email and pwd from request header 
 router.use(express.json())  //req.body
 
+//*call authenticate method on passport instance
+//* this is our gatekeeper middleware
+let requireLogin = passport.authenticate('local', {session:false})
+let requireJwt = passport.authenticate('jwt', {session:false})
+
+//this function returns a JWT
+// {id, email, password, createdAt, updatedAt}
+
+const token = (userRecord) => {
+    let timestamp = new Date().getTime(); //current time in ms
+    return jwt.encode({sub:userRecord.id, iat:timestamp}, secrets.secrets)
+}
+
 
 router.get('/', (req, res)=>{
     res.send('Hello World')
@@ -74,6 +87,15 @@ router.post('/register', async (req, res)=>{
 
     }
 
+})
+
+router.post('/login', requireLogin, (req, res)=>{
+    //req.user
+    res.json({token: token(req.user)})
+})
+
+router.get('/protected', requireJwt, (req, res)=>{
+    res.json({isValid: true})
 })
 
 module.exports = router
