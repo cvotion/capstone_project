@@ -43,9 +43,9 @@ console.log("submitForm")
 
 
 
-        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='First Name' id='formControlLg' type='email' size="lg" onChange={e => setFirstName(e.target.value)}/>
-        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Last Name' id='formControlLg' type='password' size="lg" onChange={e => setLastName(e.target.value)}/>
-        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email' id='formControlLg' type='password' size="lg" onChange={e => setEmail(e.target.value)}/>
+        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='First Name' id='formControlLg' type='first name' size="lg" onChange={e => setFirstName(e.target.value)}/>
+        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Last Name' id='formControlLg' type='last name' size="lg" onChange={e => setLastName(e.target.value)}/>
+        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email' id='formControlLg' type='email' size="lg" onChange={e => setEmail(e.target.value)}/>
         <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg" onChange={e => setPassword(e.target.value)}/>
 
         {/* <p className="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p> */}
