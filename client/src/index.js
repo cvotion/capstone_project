@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Routes as Switch} from 'react-router-dom
 import {createStore, compose, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css'
+import {checkToken} from './actions'
 
 // Styles
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -19,13 +20,14 @@ import Register from './components/auth/Register'
 import reduxThunk from 'redux-thunk'
 import reducer from './reducers/reducer'
 import RequireAuth from './components/RequireAuth'
+import SignOut from './components/auth/SignOut'
 
 let store = createStore(reducer, {},
   compose(applyMiddleware(reduxThunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   ))
 
-
+store.dispatch(checkToken())
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -42,6 +44,7 @@ root.render(
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/favorites" element={<RequireAuth> <Favorites /> </RequireAuth>} />
+            <Route path="/signout" element={<SignOut/>} />
           </Switch>
         </NavigationBar>
       </Router>
