@@ -9,9 +9,10 @@ export const register = (formData, cb) => async dispatch=>{  // store.dispatch
 
     try{
         
+        
         // api call to our backend
 
-        let response = await axios.post('/createUser', formData)
+        let response = await axios.post('/register', formData)
 
         let jwt = response.data.token
 
