@@ -47,7 +47,6 @@ const App = () => {
     map.on('load', () => {
       geolocate.trigger();
     });
-
       
     let restroomList;
     const options = {
