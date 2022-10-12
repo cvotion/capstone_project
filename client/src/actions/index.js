@@ -12,6 +12,11 @@ export const register = (formData, cb) => async dispatch=>{  // store.dispatch
         
         // api call to our backend
 
+        dispatch({
+            type: actionType.ERROR,
+            data:""
+        })
+
         let response = await axios.post('/register', formData)
 
         let jwt = response.data.token
