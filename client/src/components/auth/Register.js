@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import '../../App.css'
 import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBIcon} from 'mdb-react-ui-kit';
 import { useNavigate } from 'react-router-dom'
@@ -10,21 +10,31 @@ import {register} from '../../actions/index'
 
 const Register = () => {
 
+  const registerMessage = useSelector(state => state.error)
+
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [displayErrorMessage, setDisplayErrorMessage] = useState("")
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const handleSubmit = (e) => { 
-console.log("submitForm")
+      console.log("submitForm")
       e.preventDefault()
+      console.log(registerMessage);
+      if(registerMessage != null){
+        setDisplayErrorMessage("Email has been registered!")
+      }
       dispatch(register({firstName, lastName, email, password}, ()=>{
           navigate('/login')
+          setDisplayErrorMessage("")
       } ))
    }  
+
+
 
   return (
     <>
@@ -53,7 +63,11 @@ console.log("submitForm")
         <MDBBtn outline className='mx-2 px-5 text-grey' color='grey' size='lg' onClick={handleSubmit}>
         
           Register
+          
         </MDBBtn>
+
+        <h2>{displayErrorMessage}</h2>
+
 
         {/* <div className='d-flex flex-row mt-3 mb-5 text-white'>
           <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
