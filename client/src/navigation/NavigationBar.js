@@ -1,16 +1,7 @@
 import React, { useState } from 'react';
-import {
-  MDBNavbar,
-  MDBNavbarNav,
-  MDBNavbarItem,
-  MDBNavbarLink,
-  MDBNavbarToggler,
-  MDBContainer,
-  MDBIcon,
-  MDBCollapse,
-  MDBBtn
-} from 'mdb-react-ui-kit';
+import {MDBNavbar, MDBNavbarNav, MDBNavbarItem, MDBNavbarLink, MDBNavbarToggler, MDBContainer, MDBIcon, MDBCollapse, MDBBtn} from 'mdb-react-ui-kit';
 import {Link} from 'react-router-dom'
+import Image from '../images/SafeWhiz-1.png'
 
 export default function App(props) {
   const [showBasic, setShowBasic] = useState(false);
@@ -31,6 +22,11 @@ export default function App(props) {
           <MDBCollapse navbar show={showBasic}>
             <MDBNavbarNav right className='mb-2 mb-lg-0'>
               <MDBNavbarItem active>
+            <img src={Image} height="70px" width='70px'></img>
+              </MDBNavbarItem>
+
+              <div className='d-flex text-center m-3'>
+              <MDBNavbarItem active>
                 <Link aria-current='page' to='./' className='nav-link'>
                   Home
                 </Link>
@@ -47,6 +43,8 @@ export default function App(props) {
               <MDBNavbarItem>
               <Link to='./signout' className='nav-link'>Sign Out</Link>
               </MDBNavbarItem>
+
+              </div>
             </MDBNavbarNav>
           </MDBCollapse>
         </MDBContainer>

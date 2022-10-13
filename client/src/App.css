@@ -1,11 +1,18 @@
-
 body {
-  /* fallback for old browsers */
-  background: #5bcefa;
+	background: linear-gradient(-45deg, #5BCEFA, #ffffff,  #F5A9B8);
+	background-size: 400% 400%;
+	animation: gradient 10s ease infinite;
+	height: 100vh;
+}
 
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, rgba(91, 206, 250, 0.5), rgba(245, 169, 184, 0.5));
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, rgba(91, 206, 250, 0.5), rgba(245, 169, 184, 0.5))
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
