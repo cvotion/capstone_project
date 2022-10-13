@@ -46,7 +46,7 @@ export const register = (formData, cb) => async dispatch=>{  // store.dispatch
 
         dispatch({
             type: actionType.ERROR, 
-            data: 'email in use'
+            data: err
         })
 
     }

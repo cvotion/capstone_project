@@ -2,12 +2,49 @@ import React, {useEffect, useState} from 'react'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import mapboxgl from 'mapbox-gl'
 import {keys} from './secret.js'
-
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 const App = () => {
   
   const [restrooms, setRestrooms] = useState([])
   const [userLat, setUserLat] = useState()
   const [userLng, setUserLng] = useState()
+  const [show, setShow] = useState(false);
+
+  const [name, setName] = useState("")
+  const [street, setStreet] = useState("")
+  const [city, setCity] = useState("")
+  const [state, setState] = useState("")
+  const [directions, setDirections] = useState("")
+  const [comment, setComment] = useState("")
+  const [ada, setAda] = useState()
+  const [changingTable, setChangingTable] = useState()
+  const [upVote, setUpVote] = useState("")
+  const [downVote, setDownVote] = useState("")
+  const [unisex, setUnisex] = useState()
+  const [restLat, setRestLat] = useState("")
+  const [restLng, setRestLng] = useState("")
+
+//   "id": 63630,
+// "name": "Barrilleaux’s Restaurant & Wine Bar",
+// "street": "2000 Burgundy St",
+// "city": "New Orleans ",
+// "state": "LA",
+// "accessible": false,
+// "unisex": true,
+// "directions": "There are 2 unisex restrooms. One at the back of the restaurant and one around the corner behind the bar.",
+// "comment": "You should be a paying customer. Staff is very welcoming. Closed Mon-Wednesday. ",
+// "latitude": 29.966284,
+// "longitude": -90.058931,
+// "created_at": "2022-10-10T15:17:11.364Z",
+// "updated_at": "2022-10-10T15:17:11.474Z",
+// "downvote": 0,
+// "upvote": 1,
+// "country": "US",
+// "changing_table": false,
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   
   // Create map and locate user for API call
   useEffect(() => {
@@ -83,6 +120,8 @@ const App = () => {
           
           marker.getElement().addEventListener('click', (e)=>{
             console.log([restroom.longitude, restroom.latitude]);
+            restroomModal(restroom)
+            handleShow()
           })
       })
     }
@@ -110,11 +149,66 @@ const App = () => {
   // }, [restrooms])
 
 
+  const restroomModal = (restroom) => {
+    setName(restroom.name)
+    setStreet(restroom.street)
+    setCity(restroom.city)
+    setState(restroom.state)
+    setDirections(restroom.directions)
+    setComment(restroom.comment)
+    setAda(restroom.ada)
+    setUnisex(restroom.unisex)
+    setChangingTable(restroom.changingTable)
+    setUpVote(restroom.upVote)
+    setDownVote(restroom.downVote)
+    setRestLat(restroom.latitude)
+    setRestLng(restroom.longitude)
+  }
+  
+  const getDirections = async () => {
+
+    // console.log(userLat, userLng);
+
+    let results = await fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${userLng}%2C${userLat}%3B${restLng}%2C${restLat}?alternatives=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=${keys.mapboxToken}`)
+
+    let directions = await results.json()
+    console.log(directions);
+  }
   
   return (
     <>
 
-      <div id='map' style={{width: "700px", height: "400px"}}></div>  
+      <div id='map' style={{width: "700px", height: "400px"}}></div> 
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            <h4>{street}, {city}, {state}</h4>
+            <p>{directions}</p>
+            <p>{comment}</p>
+          </div>
+          <div>
+            <p>Unisex: {unisex?"Yes":"No"}</p>
+            <p>Accessible: {ada?"Yes":"No"}</p>
+            <p>Changing Table: {changingTable?"Yes":"No"}</p>
+          </div>
+          <div>
+            <p>Upvotes: {upVote}</p>
+            <p>Downvotes: {downVote}</p>
+          </div>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary">
+            Navigation
+          </Button>
+        </Modal.Footer>
+      </Modal> 
 
     </>
   )
