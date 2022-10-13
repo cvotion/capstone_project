@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {createElement, useEffect, useState} from 'react'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import mapboxgl from 'mapbox-gl'
 import {keys} from './secret.js'
@@ -8,6 +8,8 @@ const App = () => {
   const [restrooms, setRestrooms] = useState([])
   const [userLat, setUserLat] = useState()
   const [userLng, setUserLng] = useState()
+  const [locationLat, setLocationLat] = useState()
+  const [locationLng, setLocationLng] = useState()
   
   // Create map and locate user for API call
   useEffect(() => {
@@ -69,13 +71,13 @@ const App = () => {
       let results = await fetch(`https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=50&offset=0&lat=${crd.latitude}&lng=${crd.longitude}`)
       
       restroomList = await results.json()
-      console.log('success', restroomList)
-      // setRestrooms(restroomList)
+      // console.log('success', restroomList)
+      setRestrooms(restroomList)
       restroomList.forEach((restroom)=>{
-        console.log('here', restroom)
 
+        // console.log('here', restroom)
         let popup = new mapboxgl.Popup({offset: 25})
-          .setText(restroom.name)
+          .setText([restroom.name, restroom.street])
 
         let marker = new mapboxgl.Marker()
           .setLngLat([restroom.longitude, restroom.latitude])
@@ -84,11 +86,13 @@ const App = () => {
           
           marker.getElement().addEventListener('click', (e)=>{
             console.log([restroom.longitude, restroom.latitude]);
+
+            setLocationLng(restroom.longitude)
+            setLocationLat(restroom.latitude)
+            getDirections()
           })
       })
     }
-
-    //https://api.mapbox.com/directions/v5/mapbox/driving/-95.691092%2C29.8499825%3B-95.715239%2C29.8322942?alternatives=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=pk.eyJ1Ijoic2NoZWx0ZW1hdCIsImEiOiJjbDhodGx1c2YxMGcwNDBuen
     
     function error(err) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -97,20 +101,15 @@ const App = () => {
       
   }, [])
 
-  // useEffect(() => {
-    
-  //   if(restrooms.length > 0){
-  //     restrooms.forEach((restroom)=>{
-  //       console.log('here', restroom.latitude)
-  //       let marker = new mapboxgl.Marker()
-  //           .setLngLat([restroom.longitude, restroom.latitude])
-  //           .addTo(map);
-  //     })
+  const getDirections = async () => {
 
-  //   }
-  // }, [restrooms])
+    // console.log(userLat, userLng);
 
+    let results = await fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${userLng}%2C${userLat}%3B${locationLng}%2C${locationLat}?alternatives=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=${keys.mapboxToken}`)
 
+    let directions = await results.json()
+    console.log(directions);
+  }
   
   return (
     <>
