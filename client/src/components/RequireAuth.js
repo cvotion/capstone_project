@@ -19,7 +19,7 @@ const RequireAuth = (props) => {
         if(!token){
 
 
-            navigate('/favorites')
+            navigate('/login')
 
         }
   
