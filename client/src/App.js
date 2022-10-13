@@ -1,15 +1,23 @@
-import React, {useEffect, useState} from 'react'
+import React, {createElement, useEffect, useState, useRef} from 'react'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import mapboxgl from 'mapbox-gl'
 import {keys} from './secret.js'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+
+
+mapboxgl.accessToken = `${keys.mapboxToken}`;
+
 const App = () => {
   
   const [restrooms, setRestrooms] = useState([])
   const [userLat, setUserLat] = useState()
   const [userLng, setUserLng] = useState()
   const [show, setShow] = useState(false);
+
+
+  const [navigation, setNavigation] = useState()
+
 
   const [name, setName] = useState("")
   const [street, setStreet] = useState("")
@@ -25,41 +33,26 @@ const App = () => {
   const [restLat, setRestLat] = useState("")
   const [restLng, setRestLng] = useState("")
 
-//   "id": 63630,
-// "name": "Barrilleaux’s Restaurant & Wine Bar",
-// "street": "2000 Burgundy St",
-// "city": "New Orleans ",
-// "state": "LA",
-// "accessible": false,
-// "unisex": true,
-// "directions": "There are 2 unisex restrooms. One at the back of the restaurant and one around the corner behind the bar.",
-// "comment": "You should be a paying customer. Staff is very welcoming. Closed Mon-Wednesday. ",
-// "latitude": 29.966284,
-// "longitude": -90.058931,
-// "created_at": "2022-10-10T15:17:11.364Z",
-// "updated_at": "2022-10-10T15:17:11.474Z",
-// "downvote": 0,
-// "upvote": 1,
-// "country": "US",
-// "changing_table": false,
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
-  // Create map and locate user for API call
-  useEffect(() => {
-    
-    mapboxgl.accessToken = `${keys.mapboxToken}`;
 
+  useEffect(() => {
+    createMap()
+  }, [])
+
+
+
+  const createMap = () => {
     const map = new mapboxgl.Map({
       container: 'map', // container ID
       style: 'mapbox://styles/mapbox/streets-v11', // style URL
       center: [-95.37, 29.76], // starting position [lng, lat]
       zoom: 9 // starting zoom
     });
-    
+
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-    
+
     map.addControl(
       new mapboxgl.GeolocateControl({
         positionOptions: {
@@ -71,27 +64,26 @@ const App = () => {
         showUserHeading: true
       })
     );
-      
-    // Initialize the geolocate control.
+
     const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true
       },
       trackUserLocation: true
     });
-    // Add the control to the map.
-    map.addControl(geolocate);
+    
+    map.addControl(geolocate); // Add the control to the map.
     map.on('load', () => {
       geolocate.trigger();
     });
-      
+
     let restroomList;
     const options = {
       enableHighAccuracy: true,
-      timeout: 5000,
+      timeout: 50000,
       maximumAge: 0
     };
-    
+
     const success = async (pos)=> {
       const crd = pos.coords;
       setUserLat(crd.latitude)
@@ -105,49 +97,33 @@ const App = () => {
       let results = await fetch(`https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=50&offset=0&lat=${crd.latitude}&lng=${crd.longitude}`)
       
       restroomList = await results.json()
-      console.log('success', restroomList)
-      // setRestrooms(restroomList)
+      // console.log('success', restroomList)
+      setRestrooms(restroomList)
       restroomList.forEach((restroom)=>{
-        console.log('here', restroom)
 
-        let popup = new mapboxgl.Popup({offset: 25})
-          .setText(restroom.name)
+        // console.log('here', restroom)
 
         let marker = new mapboxgl.Marker()
           .setLngLat([restroom.longitude, restroom.latitude])
-          .setPopup(popup)
           .addTo(map)
-          
-          marker.getElement().addEventListener('click', (e)=>{
-            console.log([restroom.longitude, restroom.latitude]);
-            restroomModal(restroom)
-            handleShow()
-          })
+
+        marker.getElement().addEventListener('click', (e)=>{
+          console.log([restroom.longitude, restroom.latitude]);
+          restroomModal(restroom)
+          handleShow()
+        })
+        
+
       })
     }
-
-    //https://api.mapbox.com/directions/v5/mapbox/driving/-95.691092%2C29.8499825%3B-95.715239%2C29.8322942?alternatives=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=pk.eyJ1Ijoic2NoZWx0ZW1hdCIsImEiOiJjbDhodGx1c2YxMGcwNDBuen
     
     function error(err) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
     }
+
     navigator.geolocation.getCurrentPosition(success, error, options);
-      
-  }, [])
 
-  // useEffect(() => {
-    
-  //   if(restrooms.length > 0){
-  //     restrooms.forEach((restroom)=>{
-  //       console.log('here', restroom.latitude)
-  //       let marker = new mapboxgl.Marker()
-  //           .setLngLat([restroom.longitude, restroom.latitude])
-  //           .addTo(map);
-  //     })
-
-  //   }
-  // }, [restrooms])
-
+  }
 
   const restroomModal = (restroom) => {
     setName(restroom.name)
@@ -164,21 +140,25 @@ const App = () => {
     setRestLat(restroom.latitude)
     setRestLng(restroom.longitude)
   }
-  
-  const getDirections = async () => {
 
+  const getDirections = async () => {
     // console.log(userLat, userLng);
 
     let results = await fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${userLng}%2C${userLat}%3B${restLng}%2C${restLat}?alternatives=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=${keys.mapboxToken}`)
 
     let directions = await results.json()
+    setNavigation(directions)
     console.log(directions);
+    
+    // setShow(false)
+
   }
   
   return (
     <>
 
       <div id='map' style={{width: "700px", height: "400px"}}></div> 
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{name}</Modal.Title>
@@ -204,7 +184,9 @@ const App = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary">
+
+          <Button variant="primary" onClick={getDirections}>
+
             Navigation
           </Button>
         </Modal.Footer>
@@ -213,5 +195,4 @@ const App = () => {
     </>
   )
 }
-
 export default App
