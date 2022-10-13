@@ -1,4 +1,5 @@
 const passport = require('passport');
+const UserModel = require("../models/Users")
 
 const LocalStrategy = require('passport-local').Strategy; //local strategy 
 const JwtStrategy = require('passport-jwt').Strategy,
@@ -26,12 +27,12 @@ const secrets = require('../secrect1');
  }
 
  let localLogin = new LocalStrategy(options, async (email, password, done)=>{
-
+console.log(email, password, "inside local")
 
     try{
         //check if email is in our db 
 
-        let records = await db.users.find({email: email})  //[{}, {}, {}]
+        let records = await UserModel.find({email: email})  //[{}, {}, {}]
 
         if(records !== null){
             // if the email was found 
@@ -87,7 +88,7 @@ let jwtLogin = new JwtStrategy(jwtOptions, async (payload, done)=>{
 
         //check if user is in db
 
-        let user = await db.users.findById(userID);  //{} or null 
+        let user = await UserModel.findById(userID);  //{} or null 
 
         if(user){
             return done(null, user) //place the user object on req.user

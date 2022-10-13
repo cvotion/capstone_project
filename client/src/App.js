@@ -5,6 +5,7 @@ import {keys} from './secret.js'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+
 mapboxgl.accessToken = `${keys.mapboxToken}`;
 
 const App = () => {
@@ -14,7 +15,9 @@ const App = () => {
   const [userLng, setUserLng] = useState()
   const [show, setShow] = useState(false);
 
+
   const [navigation, setNavigation] = useState()
+
 
   const [name, setName] = useState("")
   const [street, setStreet] = useState("")
@@ -30,10 +33,9 @@ const App = () => {
   const [restLat, setRestLat] = useState("")
   const [restLng, setRestLng] = useState("")
 
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-
 
   useEffect(() => {
     createMap()
@@ -104,13 +106,14 @@ const App = () => {
         let marker = new mapboxgl.Marker()
           .setLngLat([restroom.longitude, restroom.latitude])
           .addTo(map)
-          
+
         marker.getElement().addEventListener('click', (e)=>{
           console.log([restroom.longitude, restroom.latitude]);
           restroomModal(restroom)
           handleShow()
         })
         
+
       })
     }
     
@@ -148,6 +151,7 @@ const App = () => {
     console.log(directions);
     
     // setShow(false)
+
   }
   
   return (
@@ -180,7 +184,9 @@ const App = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
+
           <Button variant="primary" onClick={getDirections}>
+
             Navigation
           </Button>
         </Modal.Footer>
