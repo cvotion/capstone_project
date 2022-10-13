@@ -37,7 +37,7 @@ const Login = () => {
       setDisplayLoginError("Invalid password")
     }
     dispatch(signIn({email, password}, ()=>{
-      navigate('/favorites')
+      navigate('/')
       setDisplayLoginError("")
     }))
 
