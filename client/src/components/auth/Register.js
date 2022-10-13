@@ -16,15 +16,21 @@ const Register = () => {
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [displayErrorMessage, setDisplayErrorMessage] = useState("")
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const handleSubmit = (e) => { 
-console.log("submitForm")
+      console.log("submitForm")
       e.preventDefault()
+      console.log(registerMessage);
+      if(registerMessage != null){
+        setDisplayErrorMessage("Email has been registered!")
+      }
       dispatch(register({firstName, lastName, email, password}, ()=>{
           navigate('/login')
+          setDisplayErrorMessage("")
       } ))
    }  
 
@@ -60,9 +66,8 @@ console.log("submitForm")
           
         </MDBBtn>
 
+        <h2>{displayErrorMessage}</h2>
 
-
-        <h2>{registerMessage ? registerMessage : ""}</h2>
 
         {/* <div className='d-flex flex-row mt-3 mb-5 text-white'>
           <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
