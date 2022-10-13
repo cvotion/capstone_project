@@ -165,6 +165,15 @@ const App = () => {
     setRestLng(restroom.longitude)
   }
   
+  const getDirections = async () => {
+
+    // console.log(userLat, userLng);
+
+    let results = await fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${userLng}%2C${userLat}%3B${restLng}%2C${restLat}?alternatives=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=${keys.mapboxToken}`)
+
+    let directions = await results.json()
+    console.log(directions);
+  }
   
   return (
     <>
