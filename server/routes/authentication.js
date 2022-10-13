@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../models/Users');
+const mongoose = require('mongoose')
+const UserModel = require("../models/Users")
 const jwt = require('jwt-simple');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const secret1 = require('../secrect1');
 
 
 //must initialize passport for it work
@@ -26,7 +28,7 @@ let requireJwt = passport.authenticate('jwt', {session:false})
 
 const token = (userRecord) => {
     let timestamp = new Date().getTime(); //current time in ms
-    return jwt.encode({sub:userRecord.id, iat:timestamp}, secrets.secrets)
+    return jwt.encode({sub:userRecord.id, iat:timestamp}, secret1.secrets)
 }
 
 
@@ -43,12 +45,14 @@ router.post('/register', async (req, res)=>{
 
     //collect info from the header 
     //email, password
+    console.log("inside register route")
 
     let {firstName, lastName, email, password} = req.body;
 
     try{
         //check to see if user is already in db
-        let records = await db.users.find({email: email}) //[{}, {}]
+        let records = await UserModel.find({email: email}) //[{}, {}]
+        console.log(records.length)
 
         if(records.length == 0){
             //create a new user record
@@ -56,15 +60,18 @@ router.post('/register', async (req, res)=>{
             //ecrypt password 
 
             password = bcrypt.hashSync(password, 8)
+            console.log(password)
 
             //create db entry 
 
-            let newUserRecord = await db.users.create({firstName, lastName, email, password})
+            let newUserRecord = await UserModel.create({firstName, lastName, email, password})
             // {id, email, password, createdAt, updatedAt}
+            
 
 
             // create jwt 
             let jwtToken = token(newUserRecord)
+            console.log(jwtToken)
 
             //return jwt 
 
@@ -82,7 +89,7 @@ router.post('/register', async (req, res)=>{
     catch(error){
 
         // can't access db
-
+        console.log(error)
         return res.status(432).json({error: "Can't access database"})
 
     }
