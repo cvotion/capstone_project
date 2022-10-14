@@ -6,6 +6,7 @@ const jwt = require('jwt-simple');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const secret1 = require('../secrect1');
+const FavoriteModel = require('../models/Favorites');
 
 
 //must initialize passport for it work
@@ -98,6 +99,7 @@ router.post('/register', async (req, res)=>{
 
 router.post('/login', requireLogin, (req, res)=>{
     //req.user
+    console.log(`inside login ${req.user._id}`);
 //     console.log("inside authinticatioj login")
 //    let  {email, password} = req.body
 //     UserModel.findOne({email, password})
@@ -106,6 +108,23 @@ router.post('/login', requireLogin, (req, res)=>{
 
 router.get('/protected', requireJwt, (req, res)=>{
     res.json({isValid: true})
+})
+
+//!to get favorite backend route
+router.post("/favSpot", async (req, res)=>{
+    //get the data based on user_id
+    let {user_id} = req.user._id
+    try {
+        let records = await FavoriteModel.find({user_id}) //[{}, {}]
+        return res.json(records)
+    } catch (error) {
+        console.log(error)
+        return res.status(432).json({error: "Can't access Favorite database"})
+    }
+   
+   
+
+    //send the data back to front end /favorites
 })
 
 module.exports = router
