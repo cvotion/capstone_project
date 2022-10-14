@@ -33,9 +33,9 @@ const NavPublic = () => {
 
               <div className='d-flex text-center m-3'>
               <MDBNavbarItem active>
-                <Link aria-current='page' to='./' className='nav-link'>
+                {/* <Link aria-current='page' to='./' className='nav-link'>
                   Home
-                </Link>
+                </Link> */}
               </MDBNavbarItem>
               <MDBNavbarItem>
                 <Link to='./login' className='nav-link'>Login</Link>
@@ -46,9 +46,9 @@ const NavPublic = () => {
               {/* <MDBNavbarItem>
               <Link to='./favorites' className='nav-link'>Favorite</Link>
               </MDBNavbarItem> */}
-              <MDBNavbarItem>
+              {/* <MDBNavbarItem>
               <Link to='./signout' className='nav-link'>Sign Out</Link>
-              </MDBNavbarItem>
+              </MDBNavbarItem> */}
 
               </div>
             </MDBNavbarNav>

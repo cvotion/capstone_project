@@ -34,15 +34,15 @@ const NavLoggedIn = () => {
               <div className='d-flex text-center m-3'>
               <MDBNavbarItem active>
                 <Link aria-current='page' to='./' className='nav-link'>
-                  Home
+                  Map
                 </Link>
               </MDBNavbarItem>
-              <MDBNavbarItem>
+              {/* <MDBNavbarItem>
                 <Link to='./login' className='nav-link'>Login</Link>
-              </MDBNavbarItem>
-              <MDBNavbarItem>
+              </MDBNavbarItem> */}
+              {/* <MDBNavbarItem>
               <Link to='./register' className='nav-link'>Register</Link>
-              </MDBNavbarItem>
+              </MDBNavbarItem> */}
               <MDBNavbarItem>
               <Link to='./favorites' className='nav-link'>Favorite</Link>
               </MDBNavbarItem>
