@@ -17,6 +17,7 @@ const App = () => {
 
   const [mapObj, setMapObj] = useState()
   const [navigation, setNavigation] = useState("")
+  const [sourceFlag, setSourceFlag] = useState(false)
 
 
   const [name, setName] = useState("")
@@ -41,11 +42,11 @@ const App = () => {
 
   useEffect(() => {
     createMap()
-  }, [navigation])
+  }, [])
 
   useEffect(() => {
-    console.log('latitude change', restLat);
-  }, [restLat])
+    console.log('sourceFlag change', sourceFlag);
+  }, [sourceFlag])
   
 
 
@@ -116,6 +117,8 @@ const App = () => {
 
         marker.getElement().addEventListener('click', (e)=>{
           console.log([restroom.longitude, restroom.latitude]);
+          console.log(sourceFlag)
+          
           restroomModal(restroom)
 
           setRestLat(restroom.latitude)
@@ -124,7 +127,7 @@ const App = () => {
           console.log("restroom modal", restroom.latitude, restroom.longitude);
           console.log('variables', restLat, restLng);
 
-          // map.removeSource('route')
+          // mapObj.removeSource('route')
           handleShow()
 
       
@@ -160,13 +163,31 @@ const App = () => {
 
   const getDirections = async () => {
     // console.log(userLat, userLng);
+    setSourceFlag(true)
+    console.log("setting source", sourceFlag)
+
 
     let results = await fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${userLng}%2C${userLat}%3B${restLng}%2C${restLat}?alternatives=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=${keys.mapboxToken}`)
 
     let directions = await results.json()
     setNavigation(directions)
-    console.log(directions);
+    console.log('directions:', directions);
     console.log(restLat);
+
+    if(mapObj.getLayer('route')){
+      console.log('removing layer')
+      mapObj.removeLayer('route')
+      // mapObj.removeSource('route')
+      
+    }
+    if(mapObj.getSource('route')){
+      console.log('removing source')
+      // mapObj.removeLayer('route')
+      mapObj.removeSource('route')
+      
+    }
+
+
 
     mapObj.addSource('route', {
       'type': 'geojson',
@@ -194,6 +215,18 @@ const App = () => {
       }
     });
 
+    // get the sidebar and add the instructions
+    const instructions = document.getElementById('instructions');
+    const steps = directions.routes[0].legs[0].steps;
+
+    let tripInstructions = '';
+    for (const step of steps) {
+      tripInstructions += `<li>${step.maneuver.instruction}</li>`;
+    }
+    instructions.innerHTML = `<p><strong>Trip duration: ${Math.floor(
+      directions.duration / 60
+    )} min 🚴 </strong></p><ol>${tripInstructions}</ol>`;
+
     setShow(false)
 
     // return () => mapObj.remove
@@ -204,6 +237,8 @@ const App = () => {
     <>
 
       <div id='map' style={{width: "700px", height: "400px"}}></div> 
+
+      <div id="instructions"></div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

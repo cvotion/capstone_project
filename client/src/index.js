@@ -40,7 +40,7 @@ root.render(
       <Router>
         <NavigationBar>
           <Switch>
-            <Route path="/" element={<App/>} />
+            <Route path="/" element={<RequireAuth> <App/></RequireAuth>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/favorites" element={<RequireAuth> <Favorites /> </RequireAuth>} />
