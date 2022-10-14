@@ -141,6 +141,7 @@ const App = () => {
     navigator.geolocation.getCurrentPosition(success, error, options);
 
     setMapObj(map)
+    
   }
 
   const restroomModal = (restroom) => {
@@ -155,7 +156,6 @@ const App = () => {
     setChangingTable(restroom.changingTable)
     setUpVote(restroom.upVote)
     setDownVote(restroom.downVote)
-
   }
 
   const getDirections = async () => {
@@ -167,6 +167,7 @@ const App = () => {
     setNavigation(directions)
     console.log(directions);
     console.log(restLat);
+
 
     mapObj.addSource('route', {
       'type': 'geojson',
@@ -197,7 +198,6 @@ const App = () => {
     setShow(false)
 
     // return () => mapObj.remove
-
   }
   
   return (
