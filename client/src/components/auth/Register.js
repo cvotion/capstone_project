@@ -5,9 +5,6 @@ import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, M
 import { useNavigate } from 'react-router-dom'
 import {register} from '../../actions/index'
 
-
-
-
 const Register = () => {
 
   const registerMessage = useSelector(state => state.error)
@@ -16,7 +13,7 @@ const Register = () => {
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [displayErrorMessage, setDisplayErrorMessage] = useState("")
+ 
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -25,12 +22,10 @@ const Register = () => {
       console.log("submitForm")
       e.preventDefault()
       console.log(registerMessage);
-      if(registerMessage != null){
-        setDisplayErrorMessage("Email has been registered!")
-      }
+     
       dispatch(register({firstName, lastName, email, password}, ()=>{
           navigate('/login')
-          setDisplayErrorMessage("")
+         
       } ))
    }  
 
@@ -66,7 +61,7 @@ const Register = () => {
           
         </MDBBtn>
 
-        <h2>{displayErrorMessage}</h2>
+        <h2>{registerMessage}</h2>
 
 
         {/* <div className='d-flex flex-row mt-3 mb-5 text-white'>

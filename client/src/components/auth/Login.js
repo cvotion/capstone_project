@@ -22,23 +22,19 @@ const Login = () => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [displayLoginError, setDisplayLoginError] = useState("")
+ 
   
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-
-  const handleSubmit = (e) => {
-    // console.log("inside handle submit for login")
+  const handleSubmit = async (e) => {
+   
     e.preventDefault()
-    // console.log(errorMessageFromRedux)
-    if(errorMessageFromRedux != null){
-      setDisplayLoginError("Invalid password")
-    }
+    console.log(errorMessageFromRedux)  
     dispatch(signIn({email, password}, ()=>{
       navigate('/')
-      setDisplayLoginError("")
+     
     }))
 
 
@@ -73,7 +69,7 @@ const Login = () => {
           Login
         </MDBBtn>
 
-        <h2>{displayLoginError}</h2>
+        <h2>{errorMessageFromRedux}</h2>
 
         {/* <div className='d-flex flex-row mt-3 mb-5 text-white'>
           <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
