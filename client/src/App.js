@@ -10,10 +10,11 @@ mapboxgl.accessToken = `${keys.mapboxToken}`;
 const App = () => {
   
   const [restrooms, setRestrooms] = useState([])
-  const [userLat, setUserLat] = useState()
-  const [userLng, setUserLng] = useState()
+  const [userLat, setUserLat] = useState(0)
+  const [userLng, setUserLng] = useState(0)
   const [show, setShow] = useState(false);
 
+  const [mapObj, setMapObj] = useState()
   const [navigation, setNavigation] = useState("")
 
   const [name, setName] = useState("")
@@ -27,8 +28,10 @@ const App = () => {
   const [upVote, setUpVote] = useState("")
   const [downVote, setDownVote] = useState("")
   const [unisex, setUnisex] = useState()
-  const [restLat, setRestLat] = useState("")
-  const [restLng, setRestLng] = useState("")
+
+  const [restLat, setRestLat] = useState(0)
+  const [restLng, setRestLng] = useState(0)
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -37,7 +40,12 @@ const App = () => {
 
   useEffect(() => {
     createMap()
-  }, [navigation])
+  }, [])
+
+  useEffect(() => {
+    console.log('latitude change', restLat);
+  }, [restLat])
+  
 
 
 
@@ -108,17 +116,19 @@ const App = () => {
         marker.getElement().addEventListener('click', (e)=>{
           console.log([restroom.longitude, restroom.latitude]);
           restroomModal(restroom)
+
+          setRestLat(restroom.latitude)
+          setRestLng(restroom.longitude)
+
+          console.log("restroom modal", restroom.latitude, restroom.longitude);
+          console.log('variables', restLat, restLng);
+
+          // map.removeSource('route')
           handleShow()
 
-          // if(userLat !== undefined && restLat !== undefined){
-            getDirections()
-          
-
+      
           // console.log(navigation);
-          // map.addSource('safe-restrooms', {
-          //   'type': 'geojson',
-          //   'data': navigation
-          // });
+          
         })
       })
     }
@@ -129,6 +139,7 @@ const App = () => {
 
     navigator.geolocation.getCurrentPosition(success, error, options);
 
+    setMapObj(map)
   }
 
   const restroomModal = (restroom) => {
@@ -143,8 +154,6 @@ const App = () => {
     setChangingTable(restroom.changingTable)
     setUpVote(restroom.upVote)
     setDownVote(restroom.downVote)
-    setRestLat(restroom.latitude)
-    setRestLng(restroom.longitude)
 
   }
 
@@ -156,8 +165,37 @@ const App = () => {
     let directions = await results.json()
     setNavigation(directions)
     console.log(directions);
-    
-    // setShow(false)
+    console.log(restLat);
+
+    mapObj.addSource('route', {
+      'type': 'geojson',
+      'data': {
+        'type': 'Feature',
+        'properties': {},
+        'geometry': {
+          'type': 'LineString',
+          'coordinates': directions.routes[0].geometry.coordinates
+        }
+      }
+    });
+
+    mapObj.addLayer({
+      'id': 'route',
+      'type': 'line',
+      'source': 'route',
+      'layout': {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      'paint': {
+        'line-color': '#3887be',
+        'line-width': 8
+      }
+    });
+
+    setShow(false)
+
+    // return () => mapObj.remove
   }
   
   return (
@@ -190,7 +228,7 @@ const App = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary">
+          <Button variant="primary" onClick={getDirections}>
             Navigation
           </Button>
         </Modal.Footer>
