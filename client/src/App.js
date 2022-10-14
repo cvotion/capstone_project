@@ -14,7 +14,7 @@ const App = () => {
   const [userLng, setUserLng] = useState()
   const [show, setShow] = useState(false);
 
-  const [navigation, setNavigation] = useState()
+  const [navigation, setNavigation] = useState("")
 
   const [name, setName] = useState("")
   const [street, setStreet] = useState("")
@@ -37,7 +37,7 @@ const App = () => {
 
   useEffect(() => {
     createMap()
-  }, [])
+  }, [navigation])
 
 
 
@@ -109,8 +109,17 @@ const App = () => {
           console.log([restroom.longitude, restroom.latitude]);
           restroomModal(restroom)
           handleShow()
+
+          // if(userLat !== undefined && restLat !== undefined){
+            getDirections()
+          
+
+          // console.log(navigation);
+          // map.addSource('safe-restrooms', {
+          //   'type': 'geojson',
+          //   'data': navigation
+          // });
         })
-        
       })
     }
     
@@ -136,6 +145,7 @@ const App = () => {
     setDownVote(restroom.downVote)
     setRestLat(restroom.latitude)
     setRestLng(restroom.longitude)
+
   }
 
   const getDirections = async () => {
@@ -180,7 +190,7 @@ const App = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={getDirections}>
+          <Button variant="primary">
             Navigation
           </Button>
         </Modal.Footer>
