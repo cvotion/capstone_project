@@ -11,8 +11,8 @@ mapboxgl.accessToken = `${keys.mapboxToken}`;
 const App = () => {
   
   const [restrooms, setRestrooms] = useState([])
-  const [userLat, setUserLat] = useState()
-  const [userLng, setUserLng] = useState()
+  const [userLat, setUserLat] = useState(0)
+  const [userLng, setUserLng] = useState(0)
   const [show, setShow] = useState(false);
 
 
@@ -27,11 +27,11 @@ const App = () => {
   const [comment, setComment] = useState("")
   const [ada, setAda] = useState()
   const [changingTable, setChangingTable] = useState()
-  const [upVote, setUpVote] = useState("")
-  const [downVote, setDownVote] = useState("")
+  const [upVote, setUpVote] = useState(0)
+  const [downVote, setDownVote] = useState(0)
   const [unisex, setUnisex] = useState()
-  const [restLat, setRestLat] = useState("")
-  const [restLng, setRestLng] = useState("")
+  const [restLat, setRestLat] = useState(0)
+  const [restLng, setRestLng] = useState(0)
 
 
   const handleClose = () => setShow(false);
@@ -39,7 +39,7 @@ const App = () => {
 
   useEffect(() => {
     createMap()
-  }, [])
+  }, [navigation])
 
 
 
