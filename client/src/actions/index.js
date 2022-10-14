@@ -65,9 +65,10 @@ export const register = (formData, cb) => async dispatch=>{  // store.dispatch
         
         
         //api call to our backend /login route
-        let response = await axios.get('/getUsers', formData)
+        let response = await axios.post('/login', formData)
+        // console.log(response, "token")
         let jwt = response.data.token
-        console.log("data retrieved from server");
+        console.log("data retrieved from server in login action");
 
         dispatch({
             type: actionType.LOAD_USER_TOKEN,
@@ -79,7 +80,7 @@ export const register = (formData, cb) => async dispatch=>{  // store.dispatch
           cb()
         
     } catch (error) {
-        console.log("error message 1")
+        console.log(error)
         dispatch({
             type: actionType.ERROR,
             data: "Invalid login credential"
@@ -109,7 +110,7 @@ export const checkToken = () => async dispatch => {
         try {
             //api call to check if token is valid 
 
-            let response = await axios.get('/favorite', {
+            let response = await axios.get('/protected', {
                 headers:{
                     'authorization': localStorage.token
                 }

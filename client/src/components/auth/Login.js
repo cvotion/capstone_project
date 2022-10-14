@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import '../../App.css'
 import { Link } from 'react-router-dom'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {signIn} from '../../actions'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -18,20 +18,27 @@ from 'mdb-react-ui-kit';
 
 const Login = () => {
 
+  const errorMessageFromRedux = useSelector(state => state.error)
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [displayLoginError, setDisplayLoginError] = useState("")
+  
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
 
   const handleSubmit = (e) => {
-    
+    // console.log("inside handle submit for login")
     e.preventDefault()
-
+    // console.log(errorMessageFromRedux)
+    if(errorMessageFromRedux != null){
+      setDisplayLoginError("Invalid password")
+    }
     dispatch(signIn({email, password}, ()=>{
-      navigate('/favorites')
+      navigate('/')
+      setDisplayLoginError("")
     }))
 
 
@@ -65,6 +72,8 @@ const Login = () => {
         <MDBBtn outline className='mx-2 px-5 text-grey' color='white' size='lg' onClick={handleSubmit}>
           Login
         </MDBBtn>
+
+        <h2>{displayLoginError}</h2>
 
         {/* <div className='d-flex flex-row mt-3 mb-5 text-white'>
           <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>

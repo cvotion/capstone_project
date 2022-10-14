@@ -14,7 +14,7 @@ mongoose.connect(databaseInfo.connect)
 
 //get users info from database
 app.get("/getUsers", (req, res)=>{
-    UserModel.find({}, (err, result)=>{
+    UserModel.findOne({}, (err, result)=>{
         if(err){
             res.json(err)
         }else{
