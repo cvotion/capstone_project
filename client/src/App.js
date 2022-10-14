@@ -224,8 +224,8 @@ const App = () => {
       tripInstructions += `<li>${step.maneuver.instruction}</li>`;
     }
     instructions.innerHTML = `<p><strong>Trip duration: ${Math.floor(
-      directions.duration / 60
-    )} min 🚴 </strong></p><ol>${tripInstructions}</ol>`;
+      directions.routes[0].duration / 60
+    )} min  </strong></p><ol>${tripInstructions}</ol>`;
 
     setShow(false)
 
