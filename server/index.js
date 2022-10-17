@@ -38,6 +38,7 @@ app.post('/createFavspot', async (req, res)=>{
     const newFavSpot = new FavoriteModel(favSpot)
     await newFavSpot.save()
     res.json(favSpot)
+    console.log("inside server createfavspot");
 })
 
 //get fav spots from database

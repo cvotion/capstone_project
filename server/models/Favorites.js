@@ -10,11 +10,12 @@ const FavoriteSchema = new mongoose.Schema({
     street: String,
     city: String,
     state: String,
-    user_id: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "users",
-        // required: true,
-    }],
+    userIdFromRedux: String,
+    // user_id: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "users",
+    //     // required: true,
+    // },
 
 })
 

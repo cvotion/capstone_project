@@ -24,14 +24,15 @@ import SignOut from './components/auth/SignOut'
 import ProfilePage from './components/auth/ProfilePage'
 
 let store = createStore(reducer, {},
-  compose(applyMiddleware(reduxThunk),
+  compose(applyMiddleware(reduxThunk), 
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   ))
 
-store.dispatch(checkToken())
+// store.dispatch(checkToken())
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  
 
 
 
