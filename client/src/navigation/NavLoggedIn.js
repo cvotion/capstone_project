@@ -43,7 +43,6 @@ const NavLoggedIn = () => {
       <MDBCollapse navbar show={showBasic}>
         <MDBNavbarNav right className='mb-2 mb-lg-0 d-flex'>
           
-
           <div className='d-flex m-3' id='nav-items'>
 
             <MDBNavbarItem active>
