@@ -4,24 +4,23 @@ import actionType from '../actions/actionType';
 const initialState = {
 
     token: "", 
-    error: "Test",
+    error: "",
     userId: "",
     favorites: []
 
 }
 
-const reducerTemplate = (state, action) => {
-if(state == undefined || state == null){
-    state = initialState
-}
+const reducerTemplate = (state = initialState, action) => {
+
     switch(action.type){
        
         case actionType.LOAD_USER_TOKEN:
             console.log("checkpoint 1", action.data.jwt);
             return {
                 ...state, 
-                token: action.data.jwt,
-                userId: action.data.userId
+                token: action.data
+                // token: action.data.jwt,
+                // userId: action.data.userId
             }
 
         case actionType.ERROR: 

@@ -64,7 +64,7 @@ export const register = (formData, cb) => async dispatch=>{  // store.dispatch
 
         dispatch({
             type: actionType.LOAD_USER_TOKEN,
-            data: {jwt, userId}
+            data: jwt
 
         })
           //store token in local storage
@@ -105,7 +105,7 @@ export const checkToken = () => async dispatch => {
 
             let response = await axios.get('/protected', {
                 headers:{
-                    'authorization': localStorage.token
+                    'authorization': localStorage.token.jwt
                 }
             })
 
