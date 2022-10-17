@@ -64,6 +64,11 @@ const Register = () => {
         <h2>{registerMessage}</h2>
 
 
+        <div>
+        <p className="mb-0">Already have an account? <a href="/login" class="text-grey-50 fw-bold">Sign in</a></p>
+        </div>
+
+
         {/* <div className='d-flex flex-row mt-3 mb-5 text-white'>
           <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
             <MDBIcon fab icon='facebook-f' size="lg"/>
