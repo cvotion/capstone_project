@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl'
 import {keys} from './secret.js'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { getFavoriteSpots } from './actions/index.js';
 
 
 mapboxgl.accessToken = `${keys.mapboxToken}`;
@@ -232,6 +233,12 @@ const App = () => {
     // return () => mapObj.remove
 
   }
+
+  //handle favorite action
+  const handleFavorite = (e)=>{
+     e.preventDefault()
+     dispatchEvent(getFavoriteSpots)
+  }
   
   return (
     <>
@@ -269,6 +276,10 @@ const App = () => {
           <Button variant="primary" onClick={getDirections}>
 
             Navigation
+          </Button>
+
+          <Button variant="warning" >
+            Favorite
           </Button>
         </Modal.Footer>
       </Modal> 

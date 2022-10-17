@@ -22,7 +22,7 @@ import reducer from './reducers/reducer'
 import RequireAuth from './components/RequireAuth'
 import SignOut from './components/auth/SignOut'
 
-let store = createStore(reducer, {},
+let store = createStore(reducer,
   compose(applyMiddleware(reduxThunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   ))
@@ -35,7 +35,7 @@ root.render(
 
 
 
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <Router>
         <NavigationBar>
@@ -49,5 +49,5 @@ root.render(
         </NavigationBar>
       </Router>
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

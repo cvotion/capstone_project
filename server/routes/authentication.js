@@ -76,7 +76,7 @@ router.post('/register', async (req, res)=>{
 
             //return jwt 
 
-            return res.json({token: jwtToken})
+            return res.json({token: jwtToken, userId: req.user._id})
 
         }
         else{
@@ -103,7 +103,7 @@ router.post('/login', requireLogin, (req, res)=>{
 //     console.log("inside authinticatioj login")
 //    let  {email, password} = req.body
 //     UserModel.findOne({email, password})
-    res.json({token:token(req.user)})
+    res.json({token:token(req.user), userId: req.user._id})
 })
 
 router.get('/protected', requireJwt, (req, res)=>{
