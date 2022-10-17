@@ -144,6 +144,7 @@ const App = () => {
     navigator.geolocation.getCurrentPosition(success, error, options);
 
     setMapObj(map)
+    
   }
 
   const restroomModal = (restroom) => {
@@ -158,7 +159,6 @@ const App = () => {
     setChangingTable(restroom.changingTable)
     setUpVote(restroom.upVote)
     setDownVote(restroom.downVote)
-
   }
 
   const getDirections = async () => {
@@ -186,8 +186,6 @@ const App = () => {
       mapObj.removeSource('route')
       
     }
-
-
 
     mapObj.addSource('route', {
       'type': 'geojson',
@@ -230,15 +228,17 @@ const App = () => {
     setShow(false)
 
     // return () => mapObj.remove
-
   }
   
   return (
     <>
+      <div className='map-container'>
+        <div id='map' style={{width: "100%", height: "100%"}}></div> 
+      </div>
 
-      <div id='map' style={{width: "700px", height: "400px"}}></div> 
-
-      <div id="instructions"></div>
+      <div className='instructions-container'>
+        <div id="instructions"></div>
+      </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
