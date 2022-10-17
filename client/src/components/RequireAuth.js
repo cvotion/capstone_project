@@ -15,10 +15,10 @@ const RequireAuth = (props) => {
 
     useEffect(() => {
 
-
+        console.log("require auth", token);
         if(!token){
 
-
+           
             navigate('/login')
 
         }

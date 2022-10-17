@@ -43,7 +43,6 @@ const NavLoggedIn = () => {
       <MDBCollapse navbar show={showBasic}>
         <MDBNavbarNav right className='mb-2 mb-lg-0 d-flex'>
           
-
           <div className='d-flex m-3' id='nav-items'>
 
             <MDBNavbarItem active>
@@ -53,12 +52,12 @@ const NavLoggedIn = () => {
             </MDBNavbarItem>
             {/* <MDBNavbarItem>
               <Link to='./login' className='nav-link'>Login</Link>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-            <Link to='./register' className='nav-link'>Register</Link>
             </MDBNavbarItem> */}
             <MDBNavbarItem>
-              <Link to='./favorites' className='nav-link'>Favorite</Link>
+            <Link to='./profilepage' className='nav-link'>Profile Page</Link>
+            </MDBNavbarItem>
+            <MDBNavbarItem>
+              <Link to='./favorites' className='nav-link'>Favorites</Link>
             </MDBNavbarItem>
             <MDBNavbarItem>
               <Link to='./signout' className='nav-link'>Sign Out</Link>

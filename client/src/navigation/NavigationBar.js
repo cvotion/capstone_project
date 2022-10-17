@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 export default function App(props) {
   // const [showBasic, setShowBasic] = useState(false);
 const isAuth = useSelector(state=>state.token)
+console.log("nav token", isAuth)
 // console.log(isAuth)
 
   return (

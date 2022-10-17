@@ -7,32 +7,16 @@ const Favorites = () => {
 
 
 
-<div class="cards-list">
+<div class="cards-list1">
   
-<div class="card 1">
+<div class="card1 1">
   <div class="card_image"> </div>
   <div class="card_title title-white">
-  
+  My Pee Spot
   </div>
 </div>
 
-  <div class="card 2">
-  <div class="card_image">
-   
-    </div>
-  <div class="card_title title-white">
-   
-  </div>
-</div>
 
-<div class="card 3">
-  <div class="card_image">
-   
-  </div>
-  <div class="card_title">
-   
-  </div>
-</div>
   
 
 
