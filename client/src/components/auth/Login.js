@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import '../../App.css'
 import { Link } from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import {signIn} from '../../actions'
+import {signIn, checkToken} from '../../actions'
 import { useNavigate } from 'react-router-dom'
 import {
   MDBBtn,
@@ -27,6 +27,14 @@ const Login = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  
+  useEffect(() => {
+    if(localStorage.token){
+      dispatch(checkToken(()=>{
+        navigate('/')
+      }))
+    }
+  }, [])
 
   const handleSubmit = async (e) => {
    

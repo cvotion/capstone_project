@@ -4,7 +4,8 @@ import mapboxgl from 'mapbox-gl'
 import {keys} from './secret.js'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { getFavoriteSpots } from './actions/index.js';
+import { addFavoriteSpots } from './actions/index.js';
+import {useDispatch, useSelector} from 'react-redux';
 
 
 mapboxgl.accessToken = `${keys.mapboxToken}`;
@@ -234,10 +235,13 @@ const App = () => {
 
   }
 
-  //handle favorite action
+  //handle add favorite action
+  const userIdFromRedux = useSelector(state => state.userId)
+  console.log(userIdFromRedux)
+  const dispatch = useDispatch()
   const handleFavorite = (e)=>{
      e.preventDefault()
-     dispatchEvent(getFavoriteSpots)
+     dispatch(addFavoriteSpots({name, street, city, state, userIdFromRedux}))
   }
   
   return (
@@ -278,7 +282,7 @@ const App = () => {
             Navigation
           </Button>
 
-          <Button variant="warning" >
+          <Button variant="warning" onClick={handleFavorite}>
             Favorite
           </Button>
         </Modal.Footer>

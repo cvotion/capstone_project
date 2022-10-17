@@ -93,6 +93,7 @@ router.post('/register', async (req, res)=>{
         console.log(error)
         return res.status(432).json({error: "Can't access database"})
 
+
     }
 
 })
@@ -108,6 +109,25 @@ router.post('/login', requireLogin, (req, res)=>{
 
 router.get('/protected', requireJwt, (req, res)=>{
     res.json({isValid: true})
+})
+
+
+//to add to favorite backend route
+router.post("/addFav", async (req, res)=>{
+    let {name, street, city, state, userIdFromRedux} = req.body;
+    try {
+          //create db entry 
+
+        //   let newFavRecord = await FavoriteModel.create({name, street, city, state, userIdFromRedux})
+        //   console.log(newFavRecord);
+        //   return res.json(newFavRecord)
+
+        const newFavSpots = new FavoriteModel({name, street, city, state, userIdFromRedux})
+        await newFavSpots.save()
+        res.json(newFavSpots)
+    } catch (error) {
+        return res.status(422).json({error: "Can't create new record for the fav spot"})
+    }
 })
 
 //!to get favorite backend route

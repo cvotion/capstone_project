@@ -11,16 +11,16 @@ const initialState = {
 }
 
 const reducerTemplate = (state = initialState, action) => {
-
+console.log("initialstate", initialState, state);
     switch(action.type){
        
         case actionType.LOAD_USER_TOKEN:
-            console.log("checkpoint 1", action.data.jwt);
+            console.log("checkpoint 1", action.data);
             return {
                 ...state, 
-                token: action.data
-                // token: action.data.jwt,
-                // userId: action.data.userId
+                // token: action.data
+                token: action.data.jwt,
+                userId: action.data.userId
             }
 
         case actionType.ERROR: 
@@ -37,9 +37,9 @@ const reducerTemplate = (state = initialState, action) => {
         default:
             return state;
     } 
-    console.log("reducer", state)
+
     return state;
 }
-
+console.log("reducer")
 
 export default reducerTemplate
