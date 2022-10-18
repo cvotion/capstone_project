@@ -2,14 +2,15 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios' 
 import { getFavoriteSpots } from '../actions/index.js';
 import {useDispatch, useSelector} from 'react-redux';
-
+import Button from 'react-bootstrap/Button';
 
 
 const Favorites = () => {
   const [favoriteArr, setFavoriteArr] = useState([])
   // const dispatch = useDispatch()
   const userIdFromRedux = useSelector(state => state.userId)
-
+  const [refresh, setRefresh] = useState(false)
+ const [userIdFromLocalStorage, setUserIdFromLocalStorage] = useState("")
   // const favoriteSpotsResult = dispatch(getFavoriteSpots(userIdFromRedux))
   // console.log("inside fav component", userIdFromRedux, favoriteSpotsResult);
 
@@ -18,14 +19,22 @@ const Favorites = () => {
     const getData = async () => {
       const userIdFromLocalStorage1 = JSON.parse(localStorage.getItem('token'))
       const userIdFromLocalStorage = userIdFromLocalStorage1.userId
+      setUserIdFromLocalStorage(userIdFromLocalStorage)
       
       let response = await axios.post('/favSpot', userIdFromLocalStorage)
       setFavoriteArr(response.data)
     }
     getData()
-  }, [])
+  }, [refresh])
     console.log(favoriteArr);
 
+    const handleDelete = (restroomId) => {
+      let obj = {restroomId}
+      console.log(restroomId);
+      console.log(userIdFromLocalStorage);
+      axios.post("/deleteFavSpot", obj)
+      setRefresh(!refresh)
+    }
   return (
     <>
      
@@ -35,15 +44,23 @@ const Favorites = () => {
 
 <div class="cards-list1">
   
-<div class="card1 1">
-  <div class="card_image"> </div>
-  <div class="card_title title-white">
-  My Pee Spot
-  </div>
-</div>
 
 {favoriteArr.map(favSpot =>{
-  return <h1>{favSpot.name}</h1>
+  return (
+          
+    <div class="card1 1">
+      <div class="card_image">
+        <Button variant="light" onClick={() => handleDelete(favSpot._id)} >x</Button>
+        <div class="card_title title-black">
+          {favSpot.name}
+        </div>
+        <div>
+          <p>{favSpot.street}</p>
+        </div>
+      </div>
+    </div>
+    
+  )
 })}
   
 

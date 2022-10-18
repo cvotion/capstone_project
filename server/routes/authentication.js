@@ -137,17 +137,34 @@ router.post("/favSpot", async (req, res)=>{
     console.log("in favspot auth", userIdFromLocalStorage);
     try {
         let records = await FavoriteModel.find({userIdFromLocalStorage}) //[{}, {}]
-        console.log("in favspot authen", records);
+        // console.log("in favspot authen", records);
         return res.json(records)
     } catch (error) {
         console.log(error)
         return res.status(432).json({error: "Can't access Favorite database"})
     }
    
-   
-
     //send the data back to front end /favorites
 })
+
+//to delete a spot fron fav backend route
+router.post("/deleteFavSpot", async (req, res)=>{
+    //find and delete the spot based on restroom _id
+    let obj = req.body.obj
+
+    console.log("inside delete route", obj);
+    // try {
+    //     let deletedRecord = await FavoriteModel.findOneAndDelete({_id: restroomId})
+      
+    //     console.log(deletedRecord);
+    //     // res.json(deletedRecord)
+    //     res.send("delete a record")
+    // } catch (error) {
+    //     console.log(error)
+    //     return res.status(432).json({error: "Can't delete in the db"})
+    // }
+})
+
 
 
 router.post('/profilepage', async (req, res)=>{
