@@ -32,6 +32,7 @@ const Favorites = () => {
 
 
 
+
 <div class="cards-list1">
   
 <div class="card1 1">

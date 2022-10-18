@@ -4,7 +4,7 @@
     flex-direction: column;
   }
 }
-li{
+#logo{
   list-style: none;
 }
 .map-container{
