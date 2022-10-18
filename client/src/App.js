@@ -33,7 +33,6 @@ const App = () => {
   const [upVote, setUpVote] = useState(0)
   const [downVote, setDownVote] = useState(0)
   const [unisex, setUnisex] = useState()
-  const [isFave, setIsFave] = useState(false)
 
   const [restLat, setRestLat] = useState(0)
   const [restLng, setRestLng] = useState(0)
@@ -151,7 +150,6 @@ const App = () => {
   }
 
   const restroomModal = (restroom) => {
-    console.log(restroom)
     setName(restroom.name)
     setStreet(restroom.street)
     setCity(restroom.city)
@@ -161,8 +159,8 @@ const App = () => {
     setAda(restroom.ada)
     setUnisex(restroom.unisex)
     setChangingTable(restroom.changingTable)
-    setUpVote(restroom.upvote)
-    setDownVote(restroom.downvote)
+    setUpVote(restroom.upVote)
+    setDownVote(restroom.downVote)
   }
 
   const getDirections = async () => {
@@ -271,14 +269,10 @@ const App = () => {
           <div>
             <p>Upvotes: {upVote}</p>
             <p>Downvotes: {downVote}</p>
-            <MDBIcon fas icon="heart" size='lg'/>
           </div>
 
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={()=>setIsFave(true)}>{isFave?<MDBIcon fas icon="heart" />:<MDBIcon far icon="heart" />}</button>
-          <Button variant='danger'>Downvote</Button>
-          <Button variant="success" onClick={()=>setUpVote(upVote+1)}>Upvote</Button>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
