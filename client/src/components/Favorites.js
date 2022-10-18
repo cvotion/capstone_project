@@ -38,7 +38,7 @@ const Favorites = () => {
 <div class="card1 1">
   <div class="card_image"> </div>
   <div class="card_title title-white">
-  My Pee Spot
+  
   </div>
 </div>
 
