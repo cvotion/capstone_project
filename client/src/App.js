@@ -36,10 +36,10 @@ const App = () => {
   const [restLng, setRestLng] = useState(0)
 
 
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  
   useEffect(() => {
     createMap()
   }, [])
@@ -48,8 +48,6 @@ const App = () => {
     console.log('sourceFlag change', sourceFlag);
   }, [sourceFlag])
   
-
-
 
   const createMap = () => {
     const map = new mapboxgl.Map({
@@ -144,7 +142,6 @@ const App = () => {
     navigator.geolocation.getCurrentPosition(success, error, options);
 
     setMapObj(map)
-    
   }
 
   const restroomModal = (restroom) => {
