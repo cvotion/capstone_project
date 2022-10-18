@@ -161,8 +161,9 @@ export const addFavoriteSpots = (formData) => async dispatch=>{
 
 }
 
-// export const getFavoriteSpots = (formData, cb) => async dispatch =>{
-
+// export const getFavoriteSpots = (formData) => async dispatch =>{
+// //pass the userid from redux
+// console.log("userId", formData);
 //     try {
 //         dispatch({
 //             type: actionType.ERROR,
@@ -171,11 +172,21 @@ export const addFavoriteSpots = (formData) => async dispatch=>{
 
 //         //api call to our backend /favSpot route
 //         let response = await axios.post('/favSpot', formData)
-//         console.log(response)
+//         console.log("inside getfav action", response)
 //         //!continue working here
 
+
+//         dispatch({
+//             type: actionType.GET_FAV_SPOTS,
+//             data: response.data
+
+//         })
+
 //     } catch (error) {
-        
+//         dispatch({
+//             type: actionType.ERROR,
+//             data: "can't access fav collection in database"
+//         })
 //     }
 // }
 
