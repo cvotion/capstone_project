@@ -147,4 +147,23 @@ router.post("/favSpot", async (req, res)=>{
     //send the data back to front end /favorites
 })
 
+
+router.post('/profilepage', async (req, res)=>{
+  
+    const {userId} = req.body
+    console.log(userId)
+  
+    try {
+        let id = userId.userId
+        let records = await UserModel.findById(userId) //[{}, {}]
+        console.log(records)
+        return res.json(records)
+        
+
+        
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 module.exports = router
