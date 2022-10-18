@@ -94,7 +94,7 @@ const Login = () => {
         </div>  */}
 
         <div>
-          <p className="mb-0">Don't have an account? <a href="/register" class="text-grey-50 fw-bold">Sign Up</a></p>
+          <p className="mb-0">Don't have an account? <a href="/register" className="text-grey-50 fw-bold">Sign Up</a></p>
 
         </div>
       </MDBCardBody>
