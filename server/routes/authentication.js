@@ -133,9 +133,11 @@ router.post("/addFav", async (req, res)=>{
 //!to get favorite backend route
 router.post("/favSpot", async (req, res)=>{
     //get the data based on user_id
-    let {user_id} = req.user._id
+    let {userIdFromLocalStorage} = req.body
+    console.log("in favspot auth", userIdFromLocalStorage);
     try {
-        let records = await FavoriteModel.find({user_id}) //[{}, {}]
+        let records = await FavoriteModel.find({userIdFromLocalStorage}) //[{}, {}]
+        console.log("in favspot authen", records);
         return res.json(records)
     } catch (error) {
         console.log(error)
