@@ -34,6 +34,12 @@ console.log("initialstate", initialState, state);
                 ...state,
                 favorites: state.favorites.concat(action.data)
             }
+
+        case actionType.GET_FAV_SPOTS:
+            return {
+                ...state,
+                favorites: action.data
+            }
         default:
             return state;
     } 

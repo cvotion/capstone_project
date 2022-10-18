@@ -26,7 +26,7 @@ const NavLoggedIn = () => {
  
 <>   
   <MDBNavbar expand='lg' light bgColor='white'>
-    <MDBContainer fluid>
+    <MDBContainer fluid id="logo">
       <MDBNavbarToggler
         onClick={() => setShowBasic(!showBasic)}
         aria-controls='navbarExample01'
@@ -47,7 +47,7 @@ const NavLoggedIn = () => {
 
             <MDBNavbarItem active>
               <Link aria-current='page' to='./' className='nav-link'>
-                Map
+                Nearby
               </Link>
             </MDBNavbarItem>
             {/* <MDBNavbarItem>

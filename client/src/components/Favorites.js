@@ -1,9 +1,35 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios' 
+import { getFavoriteSpots } from '../actions/index.js';
+import {useDispatch, useSelector} from 'react-redux';
+
+
 
 const Favorites = () => {
+  const [favoriteArr, setFavoriteArr] = useState([])
+  // const dispatch = useDispatch()
+  const userIdFromRedux = useSelector(state => state.userId)
+
+  // const favoriteSpotsResult = dispatch(getFavoriteSpots(userIdFromRedux))
+  // console.log("inside fav component", userIdFromRedux, favoriteSpotsResult);
+
+  useEffect(() => {
+    
+    const getData = async () => {
+      const userIdFromLocalStorage1 = JSON.parse(localStorage.getItem('token'))
+      const userIdFromLocalStorage = userIdFromLocalStorage1.userId
+      
+      let response = await axios.post('/favSpot', userIdFromLocalStorage)
+      setFavoriteArr(response.data)
+    }
+    getData()
+  }, [])
+    console.log(favoriteArr);
+
   return (
     <>
      
+
 
 
 
@@ -16,7 +42,9 @@ const Favorites = () => {
   </div>
 </div>
 
-
+{favoriteArr.map(favSpot =>{
+  return <h1>{favSpot.name}</h1>
+})}
   
 
 

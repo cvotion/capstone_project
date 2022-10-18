@@ -25,7 +25,7 @@ const NavPublic = () => {
 
 <>
   <MDBNavbar expand='lg' light bgColor='white'>
-    <MDBContainer fluid>
+    <MDBContainer fluid id="logo">
       <MDBNavbarToggler
         onClick={() => setShowBasic(!showBasic)}
         aria-controls='navbarExample01'
