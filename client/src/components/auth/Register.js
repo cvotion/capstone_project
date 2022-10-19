@@ -4,6 +4,7 @@ import '../../App.css'
 import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBIcon} from 'mdb-react-ui-kit';
 import { useNavigate } from 'react-router-dom'
 import {register} from '../../actions/index'
+import Image from '../../images/SafeSeats-1.png'
 
 const Register = () => {
 
@@ -43,8 +44,8 @@ const Register = () => {
     <MDBCard className='bg-white text-grey my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '400px'}}>
       <MDBCardBody className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
 
-        <h2 className="fw-bold mb-2 text-uppercase">Register</h2>
-        <p className="text-grey-50 mb-5"></p>
+        <h2 className="fw-bold mb-2 text-uppercase"><img src={Image} height="50%" width='50%' className='logoLogin'></img>Register</h2>
+        <p className="text-grey-50 mb-1"></p>
 
 
 

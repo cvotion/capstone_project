@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import '../../App.css'
 import { Link } from 'react-router-dom'
+import Image from '../../images/SafeSeats-1.png'
 import {useDispatch, useSelector} from 'react-redux'
 import {signIn, checkToken} from '../../actions'
 import { useNavigate } from 'react-router-dom'
@@ -15,6 +16,7 @@ import {
   MDBIcon
 }
 from 'mdb-react-ui-kit';
+
 
 const Login = () => {
 
@@ -52,8 +54,10 @@ const Login = () => {
 
   return (
     <>
+<div className='logoLogin'>
+  
+</div>
 
-   
 
 <MDBContainer fluid>
 
@@ -63,7 +67,7 @@ const Login = () => {
     <MDBCard className='bg-light text-grey my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '400px'}}>
       <MDBCardBody className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
 
-        <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
+        <h2 className="fw-bold mb-2 text-uppercase"><img src={Image} height="50%" width='50%' className='logoLogin'></img>Login</h2>
       
         <p className="text-grey-50 mb-5">Please enter your login and password!</p>
 

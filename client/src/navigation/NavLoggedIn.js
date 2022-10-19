@@ -13,7 +13,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
-import Image from '../images/SafeWhiz-1.png'
+import Image from '../images/SafeSeats-1.png'
 
 
     
