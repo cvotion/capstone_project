@@ -47,7 +47,7 @@ const Favorites = () => {
           
           <div class="card1 1">
             <div class="card_image">
-              <Button variant="light">x</Button>
+              <Button variant="light" onClick={() => handleDelete(favSpot._id)}>x</Button>
               <div class="card_title title-black">
                 {favSpot.name}
               </div>
