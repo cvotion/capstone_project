@@ -5,7 +5,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import Button from 'react-bootstrap/Button';
 
 
+
 const Favorites = () => {
+
   const [favoriteArr, setFavoriteArr] = useState([])
   // const dispatch = useDispatch()
   const userIdFromRedux = useSelector(state => state.userId)
@@ -38,41 +40,29 @@ const Favorites = () => {
   return (
     <>
      
+    <div class="cards-list1">
 
-
-
-
-<div class="cards-list1">
-  
-
-{favoriteArr.map(favSpot =>{
-  return (
+      {favoriteArr.map(favSpot =>{
+        return (
           
-    <div class="card1 1">
-      <div class="card_image">
-        <Button variant="light" onClick={() => handleDelete(favSpot._id)} >x</Button>
-        <div class="card_title title-black">
-          {favSpot.name}
-        </div>
-        <div>
-          <p>{favSpot.street}</p>
-        </div>
-      </div>
+          <div class="card1 1">
+            <div class="card_image">
+              <Button variant="light">x</Button>
+              <div class="card_title title-black">
+                {favSpot.name}
+              </div>
+              <div>
+                <p>{favSpot.street}</p>
+              </div>
+            </div>
+          </div>
+          
+        )
+      })}
+
     </div>
-    
-  )
-})}
-  
 
 
-</div>
-
-
-
-
-
-
-     
     </>
   )
 }

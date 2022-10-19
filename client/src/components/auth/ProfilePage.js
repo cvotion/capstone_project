@@ -90,7 +90,7 @@ useEffect(()=>{
 </svg>
         <p>{usercity}</p>
 
-        <h1>user city: {usercity}</h1>
+       
       </div>
       <div class="stats">
         <div class="col-4">
@@ -99,7 +99,7 @@ useEffect(()=>{
         </div>
         <div class="col-4">
           <h4>0</h4>
-          <p>PLaces Visited</p>
+          <p>Places Visited</p>
         </div>
         <div class="col-4">
           <h4>0</h4>
