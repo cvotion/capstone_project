@@ -54,6 +54,9 @@ const NavLoggedIn = () => {
               <Link to='./login' className='nav-link'>Login</Link>
             </MDBNavbarItem> */}
             <MDBNavbarItem>
+            <Link to='./searchLocation' className='nav-link'>Search Location</Link>
+            </MDBNavbarItem>
+            <MDBNavbarItem>
             <Link to='./profilepage' className='nav-link'>Profile Page</Link>
             </MDBNavbarItem>
             <MDBNavbarItem>
