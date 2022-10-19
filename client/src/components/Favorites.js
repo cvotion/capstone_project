@@ -29,8 +29,8 @@ const Favorites = () => {
     console.log(favoriteArr);
 
     const handleDelete = (restroomId) => {
-      let obj = {restroomId}
-      console.log(restroomId);
+      let obj = {restroomId: restroomId, userIdFromLocalStorage: userIdFromLocalStorage}
+      console.log(obj);
       console.log(userIdFromLocalStorage);
       axios.post("/deleteFavSpot", obj)
       setRefresh(!refresh)
