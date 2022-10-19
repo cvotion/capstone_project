@@ -129,8 +129,6 @@ const App = () => {
 
           // mapObj.removeSource('route')
           handleShow()
-
-      
           // console.log(navigation);
           
         })
