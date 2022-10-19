@@ -38,21 +38,22 @@ const Favorites = () => {
       setRefresh(!refresh)
     }
   return (
-    <>
+    <div className='favorites-backround'>
      
     <div class="cards-list1">
 
       {favoriteArr.map(favSpot =>{
         return (
           
-          <div class="card1 1">
+          <div class="card1 mb-5">
             <div class="card_image">
               <Button variant="light" onClick={() => handleDelete(favSpot._id)}>x</Button>
               <div class="card_title title-black">
                 {favSpot.name}
               </div>
-              <div>
-                <p>{favSpot.street}</p>
+              <div className='card1a'>
+                <p>{favSpot.street},</p>
+                <p>{favSpot.city}, {favSpot.state}</p>
               </div>
             </div>
           </div>
@@ -63,7 +64,7 @@ const Favorites = () => {
     </div>
 
 
-    </>
+    </div>
   )
 }
 

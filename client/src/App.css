@@ -4,6 +4,7 @@ body {
 	animation: gradient 10s ease infinite;
 	height: 100vh;
   color: black;
+ 
 }
 
 @keyframes gradient {
@@ -25,6 +26,9 @@ body {
 
 
 
+
+
+/* favorites */
 HTML CSSResult Skip Results Iframe
 EDIT ON
 .cards-list1 {
@@ -36,14 +40,19 @@ EDIT ON
 }
 
 .card1 {
-  margin: 30px auto;
+  margin:  auto;
   width: 300px;
   height: 300px;
   border-radius: 40px;
   box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
-  cursor: pointer;
+  cursor: pointer; 
   transition: 0.4s;
-  position: relative;
+  position: relative; 
+
+}
+
+.card1a{
+  margin: 20px;
 }
 
 .card1 .card_image {
@@ -59,16 +68,17 @@ EDIT ON
   right: 20px;
 } 
 
+/* text in card paragraph */
 .card1 p{
   text-align: center;
 }
 
-.card1 .card_image img {
+/* .card1 .card_image img {
   width: inherit;
   height: inherit;
   border-radius: 40px;
   object-fit: cover;
-}
+} */
 
 .card1 .card_title {
   text-align: center;
@@ -119,17 +129,22 @@ body {
   justify-content: center;
 }
 
+
+
+
+
+/* Profile page */
 .details {
   text-align: center;
 }
 
-.profile-pic {
+/* .profile-pic {
   height: 6rem;
   width: 6rem;
   object-fit: center;
   border-radius: 50%;
   border: 2px solid #fff;
-}
+} */
 
 .location p {
   display: inline-block;
@@ -154,7 +169,21 @@ body {
   margin: 1rem 0;
 }
 
-.logoLogin{
 
-  
+
+
+
+
+
+.font-size{
+
+  font-size: large;
 }
+
+
+.favorites-backround{
+  background: rgb(245,169,184);
+  background: linear-gradient(90deg, rgba(245,169,184,1) 50%, rgba(91,206,250,1) 50%);
+}
+
+
