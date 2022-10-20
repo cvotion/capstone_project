@@ -1,6 +1,6 @@
 body {
 	background: linear-gradient(-45deg, #5BCEFA, #ffffff,  #F5A9B8);
-	background-size: 400% 400%;
+	background-size: 10000% 10000%;
 	animation: gradient 10s ease infinite;
 	height: 100vh;
   color: black;
@@ -48,6 +48,7 @@ EDIT ON
   cursor: pointer; 
   transition: 0.4s;
   position: relative; 
+  
 
 }
 
@@ -59,7 +60,7 @@ EDIT ON
   width: inherit;
   height: inherit;
   border-radius: 40px;
-  background: linear-gradient(-45deg, #5BCEFA, #ffffff,  #F5A9B8);
+  background: linear-gradient(-45deg,  #F5A9B8,#ffffff, #5BCEFA  );
 }
 
 .card1 .card_image button{
@@ -67,6 +68,7 @@ EDIT ON
   font-size: smaller;
   top: 20px;
   right: 20px;
+  
   
 } 
 
@@ -76,28 +78,29 @@ EDIT ON
   
 }
 
-/* .card1 .card_image img {
-  width: inherit;
+.card1 .card_image img {
+  position: absolute;
+  /* width: inherit;
   height: inherit;
   border-radius: 40px;
-  object-fit: cover;
-} */
+  object-fit: cover; */
+} 
 
 .card1 .card_title {
   text-align: center;
   border-radius: 0px 0px 40px 40px;
-  font-family: sans-serif;
+  font-family: 'Kalam';
   font-weight: bold;
   font-size: 20px;
   padding-top: 50%;
-  height: 40px; 
+  /* height: 40px;  */
   
 }
 
 .card1:hover {
   transform: scale(0.9, 0.9);
   box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
-    -5px -5px 30px 15px rgba(0,0,0,0.22);
+    -5px -5px 30px 15px #F5A9B8(164, 57, 57, 0.22);
 }
 
 .title-white {
@@ -195,3 +198,7 @@ body {
   justify-content: center;
 }
 
+
+.font-family-class{
+  font-family: 'Kalam';
+}

@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import '../../App.css'
 import { Link } from 'react-router-dom'
 import Image from '../../images/SafeSeats-1.png'
 import {useDispatch, useSelector} from 'react-redux'
-import {signIn, checkToken} from '../../actions'
+import {signIn} from '../../actions'
 import { useNavigate } from 'react-router-dom'
 import {
   MDBBtn,
@@ -30,13 +30,7 @@ const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   
-  useEffect(() => {
-    if(localStorage.token){
-      dispatch(checkToken(()=>{
-        navigate('/')
-      }))
-    }
-  }, [])
+  
 
   const handleSubmit = async (e) => {
    
@@ -61,10 +55,10 @@ const Login = () => {
 
 <MDBContainer fluid>
 
-<MDBRow className='d-flex justify-content-center align-items-center h-100'>
+<MDBRow className='d-flex justify-content-center align-items-center h-100 font-family-class'>
   <MDBCol col='12'>
 
-    <MDBCard className='bg-light text-grey my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '400px'}}>
+    <MDBCard className='bg-light text-grey my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '450px'}}>
       <MDBCardBody className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
 
         <h2 className="fw-bold mb-2 text-uppercase"><img src={Image} height="50%" width='50%' className='logoLogin'></img>Login</h2>

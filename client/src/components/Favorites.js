@@ -3,6 +3,7 @@ import axios from 'axios'
 import { getFavoriteSpots } from '../actions/index.js';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from 'react-bootstrap/Button';
+import Image from '../images/SafeSeats-1.png'
 
 
 
@@ -46,9 +47,13 @@ const Favorites = () => {
         return (
           
           <div class="card1 mb-5">
+            
             <div class="card_image">
+            <img src={Image} height="50%" width='50%'></img>
               <Button variant="light" onClick={() => handleDelete(favSpot._id)}>x</Button>
+              
               <div class="card_title title-black">
+                
                 {favSpot.name}
               </div>
               <div className='card1a'>

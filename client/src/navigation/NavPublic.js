@@ -24,7 +24,7 @@ const NavPublic = () => {
   return (
 
 <>
-  <MDBNavbar expand='lg' light bgColor='white'>
+  <MDBNavbar expand='lg' light bgColor='white' className='font-family-class'>
     <MDBContainer fluid id="logo">
       <MDBNavbarToggler
         onClick={() => setShowBasic(!showBasic)}
