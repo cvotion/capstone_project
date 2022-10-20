@@ -43,7 +43,7 @@ const Login = () => {
     e.preventDefault()
     console.log(errorMessageFromRedux)  
     dispatch(signIn({email, password}, ()=>{
-      navigate('/')
+      navigate('/nearby')
      
     }))
 

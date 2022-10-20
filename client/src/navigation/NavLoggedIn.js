@@ -46,7 +46,7 @@ const NavLoggedIn = () => {
           <div className='d-flex m-3' id='nav-items'>
 
             <MDBNavbarItem active>
-              <Link aria-current='page' to='./' className='nav-link'>
+              <Link aria-current='page' to='./nearby' className='nav-link'>
                 Nearby
               </Link>
             </MDBNavbarItem>

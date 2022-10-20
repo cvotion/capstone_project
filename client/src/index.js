@@ -23,6 +23,7 @@ import RequireAuth from './components/RequireAuth'
 import SignOut from './components/auth/SignOut'
 import ProfilePage from './components/auth/ProfilePage'
 import SearchLocation from './components/SearchLocation'
+import Nearby from './components/Nearby';
 
 let store = createStore(reducer, {},
   compose(applyMiddleware(reduxThunk), 
@@ -43,9 +44,10 @@ root.render(
       <Router>
         <NavigationBar>
           <Switch>
-            <Route path="/" element={<RequireAuth> <App/></RequireAuth>} />
+            <Route path="/" element={<App/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
+            <Route path="/nearby" element={<RequireAuth> <Nearby /> </RequireAuth>} />
             <Route path="/searchLocation" element={<RequireAuth> <SearchLocation /> </RequireAuth>} />
             <Route path="/profilepage" element={<RequireAuth> <ProfilePage /> </RequireAuth>} />
             <Route path="/favorites" element={<RequireAuth> <Favorites /> </RequireAuth>} />

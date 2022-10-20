@@ -40,7 +40,7 @@ EDIT ON
 }
 
 .card1 {
-  margin:  auto;
+  margin: 30px auto;
   width: 300px;
   height: 300px;
   border-radius: 40px;
@@ -59,6 +59,7 @@ EDIT ON
   width: inherit;
   height: inherit;
   border-radius: 40px;
+  background: linear-gradient(-45deg, #5BCEFA, #ffffff,  #F5A9B8);
 }
 
 .card1 .card_image button{
@@ -66,11 +67,13 @@ EDIT ON
   font-size: smaller;
   top: 20px;
   right: 20px;
+  
 } 
 
 /* text in card paragraph */
 .card1 p{
   text-align: center;
+  
 }
 
 /* .card1 .card_image img {
@@ -87,7 +90,8 @@ EDIT ON
   font-weight: bold;
   font-size: 20px;
   padding-top: 50%;
-  /* height: 40px; */
+  height: 40px; 
+  
 }
 
 .card1:hover {
@@ -182,8 +186,12 @@ body {
 
 
 .favorites-backround{
-  background: rgb(245,169,184);
-  background: linear-gradient(90deg, rgba(245,169,184,1) 50%, rgba(91,206,250,1) 50%);
+
 }
 
+
+.homepage-logo{
+  display: flex;
+  justify-content: center;
+}
 
