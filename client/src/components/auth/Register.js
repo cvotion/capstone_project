@@ -38,10 +38,10 @@ const Register = () => {
 
 <MDBContainer fluid>
 
-<MDBRow className='d-flex justify-content-center align-items-center h-100'>
+<MDBRow className='d-flex justify-content-center align-items-center h-100 font-family-class'>
   <MDBCol col='12'>
 
-    <MDBCard className='bg-white text-grey my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '400px'}}>
+    <MDBCard className='bg-white text-grey my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '450px'}}>
       <MDBCardBody className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
 
         <h2 className="fw-bold mb-2 text-uppercase"><img src={Image} height="50%" width='50%' className='logoLogin'></img>Register</h2>

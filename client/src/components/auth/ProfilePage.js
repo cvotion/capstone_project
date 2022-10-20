@@ -95,15 +95,15 @@ useEffect(()=>{
       <div class="stats ">
         <div class="col-4 m-3">
           <h4>0</h4>
-          <p>Badges</p>
+          {/* <p>Badges</p> */}
         </div>
         <div class="col-4 m-3">
           <h4>0</h4>
-          <p>Places Visited</p>
+          {/* <p>Places Visited</p> */}
         </div>
         <div class="col-4 m-3">
           <h4>0</h4>
-          <p>Favorites</p>
+          {/* <p>Favorites</p> */}
         </div>
       </div>
     </div>

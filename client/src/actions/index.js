@@ -104,28 +104,28 @@ export const signOut = (cb) => dispatch =>{
 
 }
 
-export const checkToken = (cb) => async dispatch => {
+export const checkToken = () => async dispatch => {
    
-    let obj = JSON.parse(localStorage.token)
-    console.log("check token", obj);
-    if (obj.jwt){
+    let token = JSON.parse(localStorage.token)  //grabbing token form local storage
+   
+    
         try {
             //api call to check if token is valid 
-
+            
             let response = await axios.get('/protected', {
                 headers:{
-                    'authorization': obj.jwt
+                    'authorization': token.jwt
                 }
             })
 
             if(response.data.isValid){
                 dispatch({
                     type: actionType.LOAD_USER_TOKEN,
-                    data: {jwt: obj.jwt, userId: obj.userId}
+                    data: {jwt: token.jwt, userId: token.userId}
                     // data: localStorage.token.jwt
                 })
             }
-            cb()
+            
         } 
 
         
@@ -136,7 +136,7 @@ export const checkToken = (cb) => async dispatch => {
                 data: err
             })
             
-        }
+        
     }
 }
 

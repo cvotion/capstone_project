@@ -21,7 +21,7 @@ const SignOut = () => {
 
 
   return (
-  <div style={{height: "75vh"}} className="d-flex flex-column justify-content-center align-items-center">
+  <div style={{height: "75vh"}} className="d-flex flex-column justify-content-center align-items-center font-family-class">
     <h1 className="text-black">Goodbye</h1>
     <div>
       <img

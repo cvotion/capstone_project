@@ -238,11 +238,11 @@ const Nearby = () => {
   
   return (
     <>
-      <div className='map-container'>
-        <div id='map' style={{width: "100%", height: "100%"}}></div> 
+      <div className='map-container font-family-class '>
+        <div id='map' style={{width: "100%", height: "100%"}} className='map-item'></div> 
       </div>
 
-      <div className='instructions-container'>
+      <div className='instructions-container font-family-class'>
         <div id="instructions"></div>
       </div>
 
@@ -251,7 +251,7 @@ const Nearby = () => {
           <Modal.Title>{name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div>
+          <div className='font-family-class'>
             <h4>{street}, {city}, {state}</h4>
             <p>{directions}</p>
             <p>{comment}</p>
