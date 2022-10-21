@@ -12,16 +12,20 @@ mapboxgl.accessToken = `${keys.mapboxToken}`;
 
 const SearchLocation = () => {
 
+  // search states
   const [searchInput, setSearchInput] = useState("")
   const [searchCoordinates, setSearchCoordinates] = useState([])
-  const [markers, setMarkers] = useState([])
 
+  // map states
+  const [markers, setMarkers] = useState([])
   const [mapObj, setMapObj] = useState()
   const [sourceFlag, setSourceFlag] = useState(false)
 
+  // restroom api lat lng state
   const [restLat, setRestLat] = useState(0)
   const [restLng, setRestLng] = useState(0)
 
+  // modal states
   const [name, setName] = useState("")
   const [street, setStreet] = useState("")
   const [city, setCity] = useState("")
@@ -33,7 +37,6 @@ const SearchLocation = () => {
   const [upVote, setUpVote] = useState(0)
   const [downVote, setDownVote] = useState(0)
   const [unisex, setUnisex] = useState()
-
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
