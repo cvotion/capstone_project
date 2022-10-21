@@ -22,13 +22,30 @@ import reducer from './reducers/reducer'
 import RequireAuth from './components/RequireAuth'
 import SignOut from './components/auth/SignOut'
 import ProfilePage from './components/auth/ProfilePage'
+import SearchLocation from './components/SearchLocation'
+import {persistStore, persistReducer} from 'redux-persist'
+import {PersistGate} from 'redux-persist/integration/react'
+import storage from 'redux-persist/lib/storage'  //local storage for this domain : localhost:3000
+import Nearby from './components/Nearby';
 
-let store = createStore(reducer, {},
+
+
+const persistConfig = {
+  key:'root',
+  storage 
+
+}
+
+const persistedReducer = persistReducer(persistConfig, reducer)
+
+let store = createStore(persistedReducer,
   compose(applyMiddleware(reduxThunk), 
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   ))
 
-// store.dispatch(checkToken())
+let persistor = persistStore(store)
+
+store.dispatch(checkToken())
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -39,18 +56,22 @@ root.render(
 
   <React.StrictMode>
     <Provider store={store}>
+      <PersistGate persistor={persistor}>
       <Router>
         <NavigationBar>
           <Switch>
-            <Route path="/" element={<RequireAuth> <App/></RequireAuth>} />
+            <Route path="/" element={<App/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
-            <Route path="/profilepage" element={<RequireAuth> <ProfilePage /> </RequireAuth>} />
+            <Route path="/nearby" element={<RequireAuth> <Nearby /> </RequireAuth>} />
+            <Route path="/searchLocation" element={<RequireAuth> <SearchLocation /> </RequireAuth>} />
+            {/* <Route path="/profilepage" element={<RequireAuth> <ProfilePage /> </RequireAuth>} /> */}
             <Route path="/favorites" element={<RequireAuth> <Favorites /> </RequireAuth>} />
             <Route path="/signout" element={<SignOut/>} />
           </Switch>
         </NavigationBar>
       </Router>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

@@ -1,9 +1,10 @@
 body {
 	background: linear-gradient(-45deg, #5BCEFA, #ffffff,  #F5A9B8);
-	background-size: 400% 400%;
+	background-size: 10000% 10000%;
 	animation: gradient 10s ease infinite;
 	height: 100vh;
   color: black;
+ 
 }
 
 @keyframes gradient {
@@ -25,6 +26,9 @@ body {
 
 
 
+
+
+/* favorites */
 HTML CSSResult Skip Results Iframe
 EDIT ON
 .cards-list1 {
@@ -41,15 +45,22 @@ EDIT ON
   height: 300px;
   border-radius: 40px;
   box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
-  cursor: pointer;
+  cursor: pointer; 
   transition: 0.4s;
-  position: relative;
+  position: relative; 
+  
+
+}
+
+.card1a{
+  margin: 20px;
 }
 
 .card1 .card_image {
   width: inherit;
   height: inherit;
   border-radius: 40px;
+  background: linear-gradient(-45deg,  #F5A9B8,#ffffff, #5BCEFA  );
 }
 
 .card1 .card_image button{
@@ -57,33 +68,39 @@ EDIT ON
   font-size: smaller;
   top: 20px;
   right: 20px;
+  
+  
 } 
 
+/* text in card paragraph */
 .card1 p{
   text-align: center;
+  
 }
 
 .card1 .card_image img {
-  width: inherit;
+  position: absolute;
+  /* width: inherit;
   height: inherit;
   border-radius: 40px;
-  object-fit: cover;
-}
+  object-fit: cover; */
+} 
 
 .card1 .card_title {
   text-align: center;
   border-radius: 0px 0px 40px 40px;
-  font-family: sans-serif;
+  font-family: 'Kalam';
   font-weight: bold;
   font-size: 20px;
   padding-top: 50%;
-  /* height: 40px; */
+  /* height: 40px;  */
+  
 }
 
 .card1:hover {
   transform: scale(0.9, 0.9);
   box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
-    -5px -5px 30px 15px rgba(0,0,0,0.22);
+    -5px -5px 30px 15px #F5A9B8(164, 57, 57, 0.22);
 }
 
 .title-white {
@@ -119,17 +136,22 @@ body {
   justify-content: center;
 }
 
+
+
+
+
+/* Profile page */
 .details {
   text-align: center;
 }
 
-.profile-pic {
+/* .profile-pic {
   height: 6rem;
   width: 6rem;
   object-fit: center;
   border-radius: 50%;
   border: 2px solid #fff;
-}
+} */
 
 .location p {
   display: inline-block;
@@ -154,7 +176,29 @@ body {
   margin: 1rem 0;
 }
 
-.logoLogin{
 
-  
+
+
+
+
+
+.font-size{
+
+  font-size: large;
+}
+
+
+.favorites-backround{
+
+}
+
+
+.homepage-logo{
+  display: flex;
+  justify-content: center;
+}
+
+
+.font-family-class{
+  font-family: 'Kalam';
 }

@@ -25,7 +25,7 @@ const NavLoggedIn = () => {
 
  
 <>   
-  <MDBNavbar expand='lg' light bgColor='white'>
+  <MDBNavbar expand='lg' light bgColor='white' className='font-family-class'>
     <MDBContainer fluid id="logo">
       <MDBNavbarToggler
         onClick={() => setShowBasic(!showBasic)}
@@ -37,7 +37,9 @@ const NavLoggedIn = () => {
       </MDBNavbarToggler>
 
       <MDBNavbarItem active >
+        <Link to='./'>
         <img src={Image} height="70px" width='70px'></img>
+        </Link>
       </MDBNavbarItem>
       
       <MDBCollapse navbar show={showBasic}>
@@ -46,7 +48,7 @@ const NavLoggedIn = () => {
           <div className='d-flex m-3' id='nav-items'>
 
             <MDBNavbarItem active>
-              <Link aria-current='page' to='./' className='nav-link'>
+              <Link aria-current='page' to='./nearby' className='nav-link'>
                 Nearby
               </Link>
             </MDBNavbarItem>
@@ -54,8 +56,11 @@ const NavLoggedIn = () => {
               <Link to='./login' className='nav-link'>Login</Link>
             </MDBNavbarItem> */}
             <MDBNavbarItem>
-            <Link to='./profilepage' className='nav-link'>Profile Page</Link>
+            <Link to='./searchLocation' className='nav-link'>Search Location</Link>
             </MDBNavbarItem>
+            {/* <MDBNavbarItem>
+            <Link to='./profilepage' className='nav-link'>Profile Page</Link>
+            </MDBNavbarItem> */}
             <MDBNavbarItem>
               <Link to='./favorites' className='nav-link'>Favorites</Link>
             </MDBNavbarItem>
