@@ -72,11 +72,12 @@ router.post('/register', async (req, res)=>{
 
             // create jwt 
             let jwtToken = token(newUserRecord)
+            
             console.log(jwtToken)
-
+            console.log('user obj test',newUserRecord)
             //return jwt 
 
-            return res.json({token: jwtToken, userId: req.user._id})
+            return res.json({token: jwtToken, userId: ""})
 
         }
         else{
