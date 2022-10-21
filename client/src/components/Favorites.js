@@ -24,7 +24,7 @@ const Favorites = () => {
       const userIdFromLocalStorage = userIdFromLocalStorage1.userId
       setUserIdFromLocalStorage(userIdFromLocalStorage)
       
-      let response = await axios.post('/favSpot', userIdFromLocalStorage)
+      let response = await axios.post('/favSpot', {userIdFromLocalStorage})
       setFavoriteArr(response.data)
     }
     getData()
