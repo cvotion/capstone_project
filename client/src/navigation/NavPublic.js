@@ -13,7 +13,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
-import Image from '../images/SafeWhiz-1.png'
+import Image from '../images/SafeSeats-1.png'
 
 
     
@@ -35,8 +35,10 @@ const NavPublic = () => {
         <FontAwesomeIcon icon={faBars} />
       </MDBNavbarToggler>
 
-      <MDBNavbarItem active>
+      <MDBNavbarItem active >
+        <Link to='./'>
         <img src={Image} height="70px" width='70px'></img>
+        </Link>
       </MDBNavbarItem>
 
       <MDBCollapse navbar show={showBasic}>
