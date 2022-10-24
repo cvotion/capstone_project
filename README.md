@@ -1,7 +1,8 @@
 # SafeSeats
 
-Safe Seats is an app designed to locate safe restrooms for marginalized communities. We have taken our api from refuge restrooms. Users are able to login to the app with their credentials and locate away!
- Once logged in the user will be sent to our nearby section where a map will show icons with safe restrooms! The user can then click on the icon and get some information! The information includes an address, brief description, unisex, ada accessible, changing table, and how many votes it has received.
+SafeSeats is an app designed to locate safe restrooms for members of marginalized communities. Users are able to register for an account, login to the app with their credentials, and locate away!
+Once logged in the user will be sent to our nearby section where a mapb will display markers with safe restrooms around the user's current location using MapBox and the REFUGE Restroom API! The user can then click on the marker and view the restroom loction's information! The information includes an address, brief description, unisex, ADA accessible, changing table, and how many up or down votes it has received.
+The user can utilize our search feature to locate accessible restrooms for their specific needs prior to visiting a travel destination. They are also able to add restrooms to their favorites. The users are able to view their favorites list and delete a favorite restroom in the case it doesn’t fulfill the users needs.
 
 # Technologies
 
